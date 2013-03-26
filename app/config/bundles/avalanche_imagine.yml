@@ -1,0 +1,35 @@
+avalanche_imagine:
+    source_root:  %kernel.root_dir%/../web
+    web_root:     %kernel.root_dir%/../web
+    cache_prefix: uploads/media/cache
+    driver:       gd
+            
+    filters:
+        my_thumb:
+            type:    thumbnail
+            options: { size: [120, 90], mode: outbound, quality: 100, format: png }
+            #options: { size: [120, 90], mode: outbound, cache_type: public, cache_expires: 2 weeks }      
+        cga:
+            type:    resize
+            options: { size: [320, 200] }
+        wuxga:
+            type:    resize
+            options: { size: [1920, 1200] }
+        heighten:
+            type:    relative_resize
+            options: { heighten: 326 } # Transforms 50x40 to 75x60
+        widen:
+            type:    relative_resize
+            options: { widen: 456 }    # Transforms 50x40 to 40x32
+        increase:
+            type:    relative_resize
+            options: { increase: 10 } # Transforms 50x40 to 60x50
+        scale:
+            type:    relative_resize
+            options: { scale: 2.5 }   # Transforms 50x40 to 125x100
+        paste:
+            type: paste
+            options:
+                image:   %kernel.root_dir%/Resources/image.jpeg  # path to image
+                x:       right                                  # [left|right|center] or integer
+                y:       bottom                                 # [top|bottom|middle] or integer

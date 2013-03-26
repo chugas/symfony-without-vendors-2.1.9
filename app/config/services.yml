@@ -1,0 +1,45 @@
+services:
+    twig.extension.debug:
+        class: Twig_Extensions_Extension_Debug
+        tags:
+            - { name: twig.extension }  
+  
+#    sonata.application.test.noticias:
+#        class: Application\TestBundle\Admin\NewsAdmin
+#        tags:
+#          - { name: sonata.admin, manager_type: orm, group: 'Test', label: Noticias }
+#        arguments:
+#            - null
+#            - Application\TestBundle\Entity\News
+#            - TestBundle:News
+#            - @service_container
+            
+#    sonata.application.test.categorias:
+#        class: Application\TestBundle\Admin\CategoryAdmin
+#        tags:
+#          - { name: sonata.admin, manager_type: orm, group: 'Test', label: Categorias }
+#        arguments:
+#            - null
+#            - Application\TestBundle\Entity\Category
+#            - TestBundle:Category
+#            - @service_container            
+
+#    acme_demo.form.type.tree:
+#        class: Application\TestBundle\Form\Type\TreeType
+#        tags:
+#                - { name: form.type, manager_type: orm, alias: tree }
+#        arguments:
+#          - @service_container
+#          - admin
+
+#    kernel.listener.detect_language:
+#        class: Application\TestBundle\Listener\LocaleListener
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.request} 
+            
+#    twig.extension.locale:
+#        class: Application\TestBundle\Twig\Extension\LocaleExtension
+#        arguments: [@service_container]
+#        tags:
+#            - { name: twig.extension }
+           

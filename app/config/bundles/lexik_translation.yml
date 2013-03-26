@@ -1,0 +1,9 @@
+lexik_translation:
+    fallback_locale: "%locale%"      # (required) default locale to use
+    managed_locales: %locales%    # (required) locales that the bundle have to manage
+    base_layout:      "LexikTranslationBundle::layout.html.twig"   # layout used with the translation edition template
+    storage:  orm                                          # where to store translations: "orm" or "mongodb"
+    resources_registration:
+        type:                 all                                  # resources type to register: "all", "files" or "database"
+        managed_locales_only: true                                 # will only load resources for managed locales
+    grid_input_type: textarea
