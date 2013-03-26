@@ -110,7 +110,7 @@ sonata_media:
      #   image:
       #      resizer: sonata.media.resizer.square  
       
-#fos_user:
-#    db_driver: orm
-#    firewall_name: main
-#    user_class: Application\Sonata\UserBundle\Entity\User
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Application\Sonata\UserBundle\Entity\User
