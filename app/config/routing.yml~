@@ -48,10 +48,6 @@ _sonata_admin:
     resource: .
     type: sonata_admin
     prefix: /admin
-
-custom:
-    resource: "@CustomBundle/Resources/config/routing.yml"
-    prefix:   /
     
 language:
     pattern:   /admin/idioma/{_locale}

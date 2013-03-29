@@ -1,0 +1,16 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/a2lixtranslationform/css/a2lix_translation.css') }}" type="text/css" media="all" />            
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/a2lixtranslationform/js/a2lix_translation.js') }}" type="text/javascript"></script>            
+{% endblock %}
+
+{% block footer %}
+  <div class="clearfix"></div>
+{% endblock %}
+
