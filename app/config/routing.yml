@@ -72,7 +72,7 @@ _imagine:
 # error-prevention
 homepage:
     pattern: /
-    defaults: { _controller: TestBundle:Default:index }  
+    defaults: { _controller: FrontendBundle:Default:index }  
 
 #test:
 #    resource: "@TestBundle/Resources/config/routing.yml"

@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+
+  {% stylesheets  '@FrontendBundle/Resources/public/css/layout.css'
+                  filter='yui_css' output='css/frontend.css' %}
+  <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+  {% endstylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+  {% javascripts  '@FrontendBundle/Resources/public/js/example.js' 
+                  filter='yui_js' output='js/frontend.js' %}
+  <script src="{{ asset_url }}" type="text/javascript"></script>
+  {% endjavascripts %}
+
+{% endblock %}
+
+{% block body %}
+
+  {% block wrapper %}{% endblock %}
+
+{% endblock %}
