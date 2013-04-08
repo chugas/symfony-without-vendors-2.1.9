@@ -52,7 +52,10 @@ class AppKernel extends Kernel
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             
             // Tiny MCE
-            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),            
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+
+            // Frontend
+            new Application\Success\FrontendBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

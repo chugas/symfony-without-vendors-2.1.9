@@ -1,6 +1,6 @@
 <?php
 
-namespace Site\FrontendBundle\Controller;
+namespace Application\Success\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
