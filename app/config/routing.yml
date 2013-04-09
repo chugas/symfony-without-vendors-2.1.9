@@ -1,3 +1,46 @@
+########################### ADMIN ###############################
+success_admin:
+    resource: "@SuccessAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+soanata_user:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /admin
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+# TRANSLATOR
+lexik_translation_edition:
+    resource: "@LexikTranslationBundle/Resources/config/routing.yml"
+    prefix:   /admin
+#-----------------------------------------------------------------------
+
+_imagine:
+    resource: .
+    type:     imagine
+    
+# error-prevention
+homepage:
+    pattern: /
+    defaults: { _controller: FrontendBundle:Default:index }  
+
+locale:
+    resource: "@LocaleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#test:
+#    resource: "@TestBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#####################################################################
+
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability
@@ -33,49 +76,3 @@ gallery:
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
-
-########################### ADMIN ###############################
-
-soanata_user:
-    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
-    prefix: /admin
-
-admin:
-    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /admin
-
-_sonata_admin:
-    resource: .
-    type: sonata_admin
-    prefix: /admin
-
-custom:
-    resource: "@CustomBundle/Resources/config/routing.yml"
-    prefix:   /
-    
-language:
-    pattern:   /admin/idioma/{_locale}
-    defaults:  { _controller: TestBundle:Default:switchLanguage }
-    requirements:
-        lang: en|es
-
-# TRANSLATOR
-lexik_translation_edition:
-    resource: "@LexikTranslationBundle/Resources/config/routing.yml"
-    prefix:   /admin
-#-----------------------------------------------------------------------
-
-_imagine:
-    resource: .
-    type:     imagine
-    
-# error-prevention
-homepage:
-    pattern: /
-    defaults: { _controller: FrontendBundle:Default:index }  
-
-#test:
-#    resource: "@TestBundle/Resources/config/routing.yml"
-#    prefix:   /
-
-#####################################################################

@@ -29,14 +29,14 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            /****************/
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
             new Sonata\IntlBundle\SonataIntlBundle(),
             
-            new Application\Sonata\CustomBundle\CustomBundle(),
-            
             // SonataMediaBundle
             new Sonata\MediaBundle\SonataMediaBundle(),
+            /*****************/
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             
             // Behaviours BASICOS
@@ -54,8 +54,14 @@ class AppKernel extends Kernel
             // Tiny MCE
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
 
+            // Manejo Basico de Locales
+            new Success\LocaleBundle\LocaleBundle(),
+            
+            // Sonata Custom Admin by Success
+            new Success\AdminBundle\SuccessAdminBundle(),
+            
             // Frontend
-            new Application\Success\FrontendBundle(),
+            new Application\Success\FrontendBundle\FrontendBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

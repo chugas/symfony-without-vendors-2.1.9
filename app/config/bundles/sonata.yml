@@ -21,7 +21,7 @@ sonata_admin:
     title_logo: /bundles/sonataadmin/logo_title.png
     templates:
         # default global templates
-        layout:  CustomBundle::admin_layout.html.twig
+        layout:  SuccessAdminBundle::admin_layout.html.twig
         #layout:  SonataAdminBundle::standard_layout.html.twig
         ajax:    SonataAdminBundle::ajax_layout.html.twig
  
@@ -29,9 +29,9 @@ sonata_admin:
         list:    SonataAdminBundle:CRUD:list.html.twig
         show:    SonataAdminBundle:CRUD:show.html.twig
         #edit:    SonataAdminBundle:CRUD:edit.html.twig
-        edit:    CustomBundle:CRUD:edit.html.twig
+        edit:    SuccessAdminBundle:CRUD:edit.html.twig
 
-        user_block:   CustomBundle:User:user_block.html.twig
+        user_block:   SuccessAdminBundle:User:user_block.html.twig
     dashboard:
         blocks:
             # display a dashboard block
