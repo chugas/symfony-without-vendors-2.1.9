@@ -1,0 +1,104 @@
+{
+    "name": "symfony/framework-standard-edition",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/chugas/SuccessLocaleBundle"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/chugas/SuccessAdminBundle"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessTranslationBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessToolsBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessContactBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessDeployBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessTinymceBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessImagineBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessTranslationFormBundle.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.1.*",
+        "doctrine/orm": ">=2.2.3,<2.5-dev",
+        "doctrine/doctrine-bundle": "1.1.*",
+        "twig/extensions": "1.0.*@dev",
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.1.*",
+        "symfony/monolog-bundle": "2.1.*",
+        "sensio/distribution-bundle": "2.1.*",
+        "sensio/framework-extra-bundle": "2.1.*",
+        "sensio/generator-bundle": "2.1.*",
+        "jms/security-extra-bundle": "1.2.*",
+        "jms/di-extra-bundle": "1.1.*",
+        "kriswallsmith/assetic": "1.1.*@dev",
+        
+        "sonata-project/admin-bundle": "2.1.*",
+        "friendsofsymfony/user-bundle": "1.3.*",
+        "sonata-project/user-bundle": "2.1.*",
+        "sonata-project/doctrine-orm-admin-bundle": "2.1.*",
+        "sonata-project/media-bundle": "2.1.*",
+        "sonata-project/intl-bundle" : "2.1.*",
+        
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "fresh/doctrine-enum-bundle": "dev-master",
+        
+        "success/imagine-bundle": "dev-develop",
+        "success/translation-bundle": "dev-master",
+        "success/locale-bundle": "dev-master",
+        "success/admin-bundle": "dev-master",
+        "success/translation-form-bundle": "dev-master",
+        "success/tinymce-bundle": "dev-master",
+        "success/contact-bundle" : "1.0.*",
+        "success/extra-tools-bundle" : "dev-master",
+        "success/deploy-bundle" : "dev-master"
+        
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "branch-alias": {
+            "dev-master": "2.1-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
