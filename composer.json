@@ -35,16 +35,8 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:chugas/SuccessDoctrineEnumBundle.git"
-        },        
-        {
-            "type": "vcs",
             "url": "git@github.com:chugas/SuccessImagineBundle.git"
         },
-        {
-            "type": "vcs",
-            "url": "git@github.com:chugas/SuccessDoctrineExtensionsBundle.git"
-        },        
         {
             "type": "vcs",
             "url": "git@github.com:chugas/SuccessTranslationFormBundle.git"
@@ -74,26 +66,18 @@
         "sonata-project/intl-bundle" : "2.1.*",
         
         "stof/doctrine-extensions-bundle": "dev-master",
+        "fresh/doctrine-enum-bundle": "dev-master",
         
-        "avalanche123/imagine-bundle": "dev-develop",
-        
+        "success/imagine-bundle": "dev-develop",
         "success/translation-bundle": "dev-master",
-
-        "a2lix/translation-form-bundle": "dev-master",
-        
-        "stfalcon/tinymce-bundle": "dev-master",
-        
         "success/locale-bundle": "dev-master",
-        
         "success/admin-bundle": "dev-master",
+        "success/translation-form-bundle": "dev-master",
+        "success/tinymce-bundle": "dev-master",
+        "success/contact-bundle" : "1.0.*",
+        "success/extra-tools-bundle" : "dev-master",
+        "success/deploy-bundle" : "dev-master"
         
-        "frequence-web/contact-bundle" : "1.0.*",
-
-        "bcc/extra-tools-bundle" : "dev-master",
-
-        "hpatoio/deploy-bundle" : "dev-master",
-        
-        "fresh/doctrine-enum-bundle": "dev-master"        
     },
     "scripts": {
         "post-install-cmd": [
