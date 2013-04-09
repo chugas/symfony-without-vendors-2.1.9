@@ -12,6 +12,42 @@
         {
             "type": "vcs",
             "url": "https://github.com/chugas/SuccessAdminBundle"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessTranslationBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessToolsBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessContactBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessDeployBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessTinymceBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessDoctrineEnumBundle.git"
+        },        
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessImagineBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessDoctrineExtensionsBundle.git"
+        },        
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessTranslationFormBundle.git"
         }
     ],
     "require": {
@@ -41,7 +77,7 @@
         
         "avalanche123/imagine-bundle": "dev-develop",
         
-        "lexik/translation-bundle": "v1.3.0",
+        "success/translation-bundle": "dev-master",
 
         "a2lix/translation-form-bundle": "dev-master",
         
@@ -49,7 +85,15 @@
         
         "success/locale-bundle": "dev-master",
         
-        "success/admin-bundle": "dev-master"        
+        "success/admin-bundle": "dev-master",
+        
+        "frequence-web/contact-bundle" : "1.0.*",
+
+        "bcc/extra-tools-bundle" : "dev-master",
+
+        "hpatoio/deploy-bundle" : "dev-master",
+        
+        "fresh/doctrine-enum-bundle": "dev-master"        
     },
     "scripts": {
         "post-install-cmd": [

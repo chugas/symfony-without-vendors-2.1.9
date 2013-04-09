@@ -62,6 +62,18 @@ class AppKernel extends Kernel
             
             // Frontend
             new Application\Success\FrontendBundle\FrontendBundle(),
+            
+            // Para poder utilizar enumerados
+            new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
+
+            // Formulario de Contacto
+            new FrequenceWeb\Bundle\ContactBundle\FrequenceWebContactBundle(),
+
+            // Extraer i18n de Templates
+            new BCC\ExtraToolsBundle\BCCExtraToolsBundle(),
+            
+            // Puesta en Produccion ssh - project:deploy
+            new Hpatoio\DeployBundle\DeployBundle(),            
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
