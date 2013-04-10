@@ -1,0 +1,22 @@
+# Project files
+/nbproject
+/EXAMPLES
+/app/config/*_dev.yml
+/app/logs
+/app/cache
+/web/uploads/*
+/vendor
+/app/config/parameters.yml
+/app/config/bundles
+/web/cgi-bin
+/web/bundles/*
+
+# SCM files
+.arch-params
+.bzr
+_darcs
+.git
+.hg
+.monotone
+.svn
+CVS

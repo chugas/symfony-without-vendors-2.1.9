@@ -1,0 +1,11 @@
+deploy:
+  prod:
+    rsync-options: '-azC --force --delete --progress -h --checksum'
+    host: host
+    user: user
+    dir:  /home/test
+    port: 22
+    post_deploy_operations: ~
+#        - app/console cache:clear
+#        - app/console assets:install
+#        - app/console assetic:dump

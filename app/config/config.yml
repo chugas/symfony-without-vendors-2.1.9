@@ -8,6 +8,8 @@ imports:
     - { resource: bundles/lexik_translation.yml }
     - { resource: bundles/a2lix_translation_form.yml }
     - { resource: bundles/stfalcon_tinymce.yml }
+    - { resource: bundles/frequence_web.yml }
+    - { resource: bundles/deploy.yml }    
     
 framework:
     #esi:             ~
