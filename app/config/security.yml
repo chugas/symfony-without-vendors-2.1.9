@@ -10,8 +10,8 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-        SONATA:
-            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are not using acl then this line must be uncommented
+        #SONATA:
+            #- ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are not using acl then this line must be uncommented
 
     providers:
         in_memory:
@@ -28,14 +28,14 @@ security:
             pattern:      /admin(.*)
             form_login:
                 provider:       fos_userbundle
-                login_path:     /admin/login
+                login_path:     fos_user_security_login
+                check_path:     fos_user_security_check                
                 use_forward:    false
-                check_path:     /admin/login_check
                 failure_path:   null
-                default_target_path: /admin/dashboard
+                default_target_path: sonata_admin_dashboard
             logout:
-                path:           /admin/logout
-                target:         /admin/login
+                path:           fos_user_security_logout
+                target:         fos_user_security_login
             anonymous:    true
         # -> end custom configuration
  

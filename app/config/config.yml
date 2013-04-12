@@ -35,6 +35,10 @@ twig:
     globals:
         locales: %locales%
 
+    form:
+        resources:
+            - 'SuccessAdminBundle:Form:form_admin_fields.html.twig'
+
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%

@@ -113,6 +113,20 @@ sonata_media:
       #      resizer: sonata.media.resizer.square  
       
 fos_user:
-    db_driver: orm
-    firewall_name: main
-    user_class: Application\Sonata\UserBundle\Entity\User
+    db_driver: orm # other valid values are 'mongodb', 'couchdb'
+    firewall_name: admin
+    user_class: Application\Success\AdminBundle\Entity\User
+    group:
+        group_class: Application\Success\AdminBundle\Entity\Group
+#    resetting:
+#        token_ttl: 86400
+#        email:
+#            from_email: # Use this node only if you don't want the global email address for the resetting email
+#                address:        admin@kunstmaan.be
+#                sender_name:    admin
+#            template:   FOSUserBundle:Resetting:email.txt.twig
+#        form:
+#            type:               fos_user_resetting
+#            handler:            fos_user.resetting.form.handler.default
+#            name:               fos_user_resetting_form
+#            validation_groups:  [ResetPassword]

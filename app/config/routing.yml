@@ -3,10 +3,6 @@ success_admin:
     resource: "@SuccessAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
-soanata_user:
-    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
-    prefix: /admin
-
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
@@ -20,6 +16,11 @@ _sonata_admin:
 lexik_translation_edition:
     resource: "@LexikTranslationBundle/Resources/config/routing.yml"
     prefix:   /admin
+    
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix:   /admin
+
 #-----------------------------------------------------------------------
 
 _imagine:
@@ -35,11 +36,7 @@ locale:
     resource: "@LocaleBundle/Resources/config/routing.yml"
     prefix:   /
 
-#test:
-#    resource: "@TestBundle/Resources/config/routing.yml"
-#    prefix:   /
-
-#####################################################################
+#################FRONTEND o GENERALES####################################################
 
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
@@ -49,9 +46,6 @@ locale:
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
-
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
