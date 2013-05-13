@@ -63,6 +63,7 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.1.*",
         "sonata-project/media-bundle": "2.1.*",
         "sonata-project/intl-bundle" : "2.1.*",
+        "sonata-project/seo-bundle" : "dev-master",
         
         "stof/doctrine-extensions-bundle": "dev-master",
         "fresh/doctrine-enum-bundle": "dev-master",

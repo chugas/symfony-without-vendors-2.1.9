@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html {{ sonata_seo_html_attributes() }}>
 
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    {{ sonata_seo_title() }}
+    {{ sonata_seo_metadatas() }}
     {% block stylesheets %}{% endblock %}
     {% block rss %}{% endblock %}
     <link rel="shortcut icon" href="{{ asset('bundles/frontend/images/favicon.ico') }}" />

@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: bundles/sonata.yml }
+    - { resource: bundles/sonata_seo.yml }    
     - { resource: bundles/stof_doctrine_extensions.yml }
     - { resource: bundles/avalanche_imagine.yml }
     - { resource: bundles/lexik_translation.yml }
