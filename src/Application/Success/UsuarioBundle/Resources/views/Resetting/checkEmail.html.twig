@@ -1,0 +1,7 @@
+{% extends "::frontend.html.twig" %}
+
+{% block wrapper %}
+<p>
+{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}
+</p>
+{% endblock %}

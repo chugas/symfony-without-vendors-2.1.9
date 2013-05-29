@@ -1,0 +1,81 @@
+{% if is_granted('ROLE_USER') %} {# el usuario está logueado #}
+
+  <div class="logged">
+    <ul>
+      <li><a href="{{ path('fos_user_profile_show') }}">Hola, <span style="color:#008D5C">{{ app.user }}</span></a></li>
+
+      {% if is_granted('ROLE_COLUMNISTA') %}
+      <li class="escribir"><a href="{{ path('portal_columnistas_noticia') }}">Escribir un articulo</a></li>
+      {% endif %}
+
+      <li style="background:none;"><a href="{{ path('fos_user_security_logout') }}" style="padding: 6px 16px 6px 6px;">X <span style="color:#008D5C">Salir</span></a></li>
+    </ul>    
+  </div>
+
+{% else %} {# el usuario todavía no ha hecho login #}
+
+  <div class="log-in">
+ 
+    <form action="{{ path('fos_user_security_check') }}" method="post">
+      <ul>
+        <li>
+          {{ "Email" | trans }}<br />
+          <input id="login_user" type="text" name="_username" value="{{ last_username | default('') }}" />
+        </li>
+        <li style="padding:0px;">
+          {{ "Contraseña" | trans }}<br />      
+          <input id="login_pass" type="password" name="_password" />
+          <input type="submit" class="send" value="" />
+        </li>
+      </ul>
+      <!--<input type="checkbox" id="remember_me" name="_remember_me" checked />
+      <label for="remember_me">{#{ "No cerrar sesión" | trans }#}</label>-->
+    </form>
+
+    <div class="remember">
+      <ul>
+        <li>No tienes usuario?</li>
+        <li><a id="agro-fancy-register" href="#inline2">Registrate</a> - <a id="agro-fancy-pass" href="#inline1">Recuperar Contraseña</a></li>
+      </ul>
+    </div>
+
+    <div style="display: none;">
+      <div id="inline2">
+        <div class="fancybox">
+            {% render 'UsuarioBundle:Registration:cajaRegistro' %}
+        </div>
+      </div>
+    </div>
+    
+    <div style="display: none;">
+      <div id="inline1">
+        <div class="fancybox">
+          {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+        </div>
+      </div>
+    </div>
+        
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#agro-fancy-register").fancybox({
+          'titlePosition'	: 'inside',
+          'transitionIn'	: 'none',
+          'transitionOut'	: 'none'
+        });
+        {#<?php if($sf_request->hasParameter('c') && $sf_request->getParameter('c') == '1'): ?>
+            $("#agro-fancy-register").trigger('click');
+        <?php endif; ?>#}
+            
+        $("#agro-fancy-pass").fancybox({
+          'titlePosition'	: 'inside',
+          'transitionIn'	: 'none',
+          'transitionOut'	: 'none',
+          'padding'             : '15'
+        });
+      });
+    </script>
+
+  </div>
+
+{% endif %}
+    

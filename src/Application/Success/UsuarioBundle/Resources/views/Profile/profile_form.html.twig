@@ -1,0 +1,36 @@
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+  <ul><li>{{ form_errors(formulario) }}</li></ul>
+  
+  {{ form_widget(formulario._token) }}
+  
+  <ul>
+    {{ form_errors(formulario.name) }}
+    <li>Nombre {{ form_widget(formulario.name) }}</li>
+
+    {{ form_errors(formulario.surname) }}
+    <li>Apellido {{ form_widget(formulario.surname) }}</li>
+
+    {{ form_errors(formulario.username) }}
+    <li>Nickname {{ form_widget(formulario.username) }}</li>
+
+    {{ form_errors(formulario.email) }}    
+    <li>E-mail {{ form_widget(formulario.email) }}</li>
+
+    {{ form_errors(formulario.plainPassword) }}    
+    <li>{{ form_widget(formulario.plainPassword) }}</li>
+
+    <!--<li>Repetir {#{ form_widget(formulario.plainPassword) }#}</li>-->
+  </ul>
+
+  <p class="datos">Estos datos serán requeridos para ingresar a su cuenta.</p>
+
+  <ul>    
+    <li>
+      {{ form_widget(formulario.country) }}
+    </li>
+  </ul>
+    <div>
+        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+</form>
+

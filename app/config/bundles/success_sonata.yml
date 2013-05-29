@@ -17,8 +17,8 @@ sonata_block:
         #sonata.media.block.feature_media:
  
 sonata_admin:
-    title:      Administrador
-    title_logo: /bundles/sonataadmin/logo_title.png
+    title:      ' '
+    title_logo: /bundles/portal/images/logo.png
     templates:
         # default global templates
         layout:  SuccessAdminBundle::admin_layout.html.twig
@@ -80,53 +80,3 @@ sonata_doctrine_orm_admin:
                 bigint:     SonataAdminBundle:CRUD:base_show_field.html.twig
                 integer:    SonataAdminBundle:CRUD:base_show_field.html.twig
                 decimal:    SonataAdminBundle:CRUD:base_show_field.html.twig
-                
-sonata_media:
-    default_context: default
-    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
-    contexts:
-        default:  # the default context is mandatory
-            providers:
-                - sonata.media.provider.dailymotion
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-                - sonata.media.provider.file
-                - sonata.media.provider.vimeo
-                
-            formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
-                large: { width: 600, height: 600, quality: 90 }
-                # Aca se pueden poner los formatos que quieras
-
-    cdn:
-        server:
-            path: /uploads/media # http://media.sonata-project.org/
-
-    filesystem:
-        local:
-            directory:  %kernel.root_dir%/../web/uploads/media
-            create:     true
-            
-    #providers:
-     #   image:
-      #      resizer: sonata.media.resizer.square  
-      
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb'
-    firewall_name: admin
-    user_class: Success\AdminBundle\Entity\User
-    group:
-        group_class: Success\AdminBundle\Entity\Group
-#    resetting:
-#        token_ttl: 86400
-#        email:
-#            from_email: # Use this node only if you don't want the global email address for the resetting email
-#                address:        admin@kunstmaan.be
-#                sender_name:    admin
-#            template:   FOSUserBundle:Resetting:email.txt.twig
-#        form:
-#            type:               fos_user_resetting
-#            handler:            fos_user.resetting.form.handler.default
-#            name:               fos_user_resetting_form
-#            validation_groups:  [ResetPassword]

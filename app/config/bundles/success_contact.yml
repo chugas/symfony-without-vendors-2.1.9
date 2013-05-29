@@ -1,0 +1,10 @@
+#parameters:
+    #frequence_web_contact.type.class: Application\Success\PortalBundle\Form\ContactType
+    #frequence_web_contact.model.class: Application\Success\PortalBundle\Form\Model\Contact
+    #frequence_web_contact.email_listener.class: Success\PortalBundle\EventDispatcher\Listener\EmailContactListener
+  
+frequence_web_contact:
+    send_mails: true                    # True to use the bundle EmailListener that send emails when contact form is submited
+    to:         chugas488@gmail.com     # The contact mail recipient
+    from:       chugas488@gmail.com     # The contact mail sender
+    subject:    contact.message.new     # The contact mail subject translation key

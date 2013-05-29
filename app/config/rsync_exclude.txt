@@ -1,15 +1,16 @@
 # Project files
 /nbproject
 /EXAMPLES
-/app/config/*_dev.yml
 /app/logs
 /app/cache
-/web/uploads/*
-/vendor
+/web/uploads
 /app/config/parameters.yml
-/app/config/bundles
 /web/cgi-bin
-/web/bundles/*
+/web/.htaccess
+/web/bundles
+#/app/config/*_dev.yml
+#/vendor
+#/app/config/bundles
 
 # SCM files
 .arch-params

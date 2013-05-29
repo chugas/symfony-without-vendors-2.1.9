@@ -2,18 +2,26 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: bundles/sonata.yml }
-    - { resource: bundles/sonata_seo.yml }    
+    - { resource: bundles/success_sonata.yml }
+    - { resource: bundles/success_sonata_media.yml }
+    - { resource: bundles/success_sonata_users.yml }
+    - { resource: bundles/success_sonata_seo.yml }
+    - { resource: bundles/success_imagine.yml }
+    - { resource: bundles/success_contact.yml }
+    - { resource: bundles/success_admin.yml }
     - { resource: bundles/stof_doctrine_extensions.yml }
-    - { resource: bundles/avalanche_imagine.yml }
-    - { resource: bundles/lexik_translation.yml }
-    - { resource: bundles/a2lix_translation_form.yml }
     - { resource: bundles/stfalcon_tinymce.yml }
-    - { resource: bundles/frequence_web.yml }
-    - { resource: bundles/deploy.yml }    
+    - { resource: bundles/lexik_translation.yml }
+    - { resource: bundles/deploy.yml }
+#    - { resource: bundles/a2lix_translation_form.yml }
+#    - { resource: bundles/success_news.yml }
+#    - { resource: bundles/success_rss.yml }
+#    - { resource: bundles/success_weather.yml }
+#    - { resource: bundles/success_newsletter.yml }    
+    
     
 framework:
-    #esi:             ~
+    esi: { enabled: true }
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
@@ -22,7 +30,7 @@ framework:
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    templating:      { engines: ['twig'], assets_version: 1.0 } #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trust_proxy_headers: false # Deprecated in 2.0; will be removed in 2.3 (used trusted_proxies instead)
     trusted_proxies: ~
@@ -39,7 +47,9 @@ twig:
     form:
         resources:
             - 'SuccessAdminBundle:Form:form_admin_fields.html.twig'
-
+#            - 'A2lixTranslationFormBundle::form.html.twig'
+#            - 'CategoryBundle:Form:fields.html.twig'
+            
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
@@ -65,7 +75,12 @@ doctrine:
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
-
+#            WildCharEnumType: Application\Success\WordsFilterBundle\Doctrine\Types\WildCharEnumType
+#            WildTypeEnumType: Application\Success\WordsFilterBundle\Doctrine\Types\WildTypeEnumType
+#            nostreamblob: Ibrows\Bundle\NewsletterBundle\DBAL\Types\NoStreamBlobType
+        mapping_types:
+            enum: string
+            
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true

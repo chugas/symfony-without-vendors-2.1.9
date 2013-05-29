@@ -20,7 +20,9 @@ security:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         fos_userbundle:
-            id: fos_user.user_manager
+            id: fos_user.user_provider.username_email
+#            id: fos_user.user_provider.username
+#            id: fos_user.user_manager
 
     firewalls:
         # -> custom firewall for the admin area of the URL
@@ -28,14 +30,14 @@ security:
             pattern:      /admin(.*)
             form_login:
                 provider:       fos_userbundle
-                login_path:     fos_user_security_login
-                check_path:     fos_user_security_check                
+                login_path:     usuario_admin_login
+                check_path:     usuario_admin_login_check      
                 use_forward:    false
                 failure_path:   null
                 default_target_path: sonata_admin_dashboard
             logout:
-                path:           fos_user_security_logout
-                target:         fos_user_security_login
+                path:           usuario_admin_logout
+                target:         usuario_admin_login
             anonymous:    true
         # -> end custom configuration
  

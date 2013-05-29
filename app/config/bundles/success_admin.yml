@@ -1,0 +1,7 @@
+success_admin:
+    user_model: 'Application\Success\UsuarioBundle\Entity\User'
+    user_admin: 'Application\Success\UsuarioBundle\Admin\UserAdmin'
+    user_controller: 'UsuarioBundle:Admin\User'
+    group_model: 'Application\Success\UsuarioBundle\Entity\Group'
+    group_admin: 'Application\Success\UsuarioBundle\Admin\GroupAdmin'
+    group_controller: 'UsuarioBundle:Admin\Group'
