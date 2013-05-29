@@ -16,10 +16,6 @@ _sonata_admin:
 lexik_translation_edition:
     resource: "@LexikTranslationBundle/Resources/config/routing.yml"
     prefix:   /admin
-    
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-    prefix:   /admin
 
 #-----------------------------------------------------------------------
 
@@ -43,9 +39,9 @@ locale:
 # This route should be enabled with caution as it can open a security vulnerability
 # see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
 # ****** WARNING ******
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
+_internal:
+    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+    prefix:   /_internal
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
@@ -63,6 +59,9 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /change-password
 
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
     prefix: /media/gallery
@@ -70,3 +69,18 @@ gallery:
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
+    
+frequence_web_contact:
+    resource: '@FrequenceWebContactBundle/Resources/config/routing.xml'
+    
+exception:
+    resource: "@ExceptionBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+usuario:
+    resource: "@UsuarioBundle/Resources/config/routing.yml"
+    prefix:   / 
+    
+portal:
+    resource: "@FrontendBundle/Resources/config/routing.yml"
+    prefix:   /

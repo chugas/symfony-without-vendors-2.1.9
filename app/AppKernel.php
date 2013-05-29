@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new Sonata\SeoBundle\SonataSeoBundle(),
             /*****************/
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Application\Success\UsuarioBundle\UsuarioBundle(),
             
             // Behaviours BASICOS
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
@@ -74,7 +75,10 @@ class AppKernel extends Kernel
             new BCC\ExtraToolsBundle\BCCExtraToolsBundle(),
             
             // Puesta en Produccion ssh - project:deploy
-            new Hpatoio\DeployBundle\DeployBundle(),            
+            new Hpatoio\DeployBundle\DeployBundle(),
+            
+            // Paginas de Error
+            new Application\Success\ExceptionBundle\ExceptionBundle(),            
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,7 @@
+parameters:
+#    exception.example.class: Application\Success\ExceptionBundle\Example
+
+services:
+#    exception.example:
+#        class: %exception.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
