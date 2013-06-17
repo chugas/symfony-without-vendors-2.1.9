@@ -38,20 +38,24 @@ security:
             logout:
                 path:           usuario_admin_logout
                 target:         usuario_admin_login
+                invalidate_session: false
             anonymous:    true
         # -> end custom configuration
  
-        # defaut login area for standard users
-        #main:
-        #    pattern:      .*
-        #    form_login:
-        #        provider:       fos_userbundle
-        #        login_path:     /login
-        #        use_forward:    false
-        #        check_path:     /login_check
-        #        failure_path:   null
-        #    logout:       true
-        #    anonymous:    true      
+        # Firewall global utilizado en la parte pública o frontend
+        frontend:
+            pattern:        ^/*
+            provider:       fos_userbundle
+            anonymous:      ~
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+            logout:
+                path:       fos_user_security_logout
+                invalidate_session: false
+            remember_me:
+                key:        frontend
+                lifetime:   604800  # 604.800 = 3.600 * 24 * 7 = 1 semana      
       
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
