@@ -27,15 +27,19 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            
+            /****************/
+
             new Sonata\IntlBundle\SonataIntlBundle(),
             
             // SonataMediaBundle
             new Sonata\MediaBundle\SonataMediaBundle(),
+            
+            //SonataSeoBundle
+            new Sonata\SeoBundle\SonataSeoBundle(),
+            /*****************/
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Application\Success\UsuarioBundle\UsuarioBundle(),
             
             // Behaviours BASICOS
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
@@ -50,11 +54,34 @@ class AppKernel extends Kernel
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             
             // Tiny MCE
-            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),            
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+
+            // Manejo Basico de Locales
+            new Success\LocaleBundle\LocaleBundle(),
+            
+            // Sonata Custom Admin by Success
+            new Success\AdminBundle\SuccessAdminBundle(),
+            
+            // Frontend
+            new Application\Success\FrontendBundle\FrontendBundle(),
+            
+            // Para poder utilizar enumerados
+            new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
+
+            // Formulario de Contacto
+            new FrequenceWeb\Bundle\ContactBundle\FrequenceWebContactBundle(),
+
+            // Extraer i18n de Templates
+            new BCC\ExtraToolsBundle\BCCExtraToolsBundle(),
+            
+            // Puesta en Produccion ssh - project:deploy
+            new Hpatoio\DeployBundle\DeployBundle(),
+            
+            // Paginas de Error
+            new Application\Success\ExceptionBundle\ExceptionBundle(),            
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

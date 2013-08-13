@@ -16,9 +16,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\AopBundle\JMSAopBundle(),
-            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            
+            //new JMS\AopBundle\JMSAopBundle(),
+            //new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
             // SonataAdminBundle + FosUserBundle
             new FOS\UserBundle\FOSUserBundle(),
@@ -95,3 +96,4 @@ class AppKernel extends Kernel
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 }
+

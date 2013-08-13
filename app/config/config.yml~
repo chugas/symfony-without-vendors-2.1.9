@@ -32,10 +32,9 @@ framework:
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'], assets_version: 1.0 } #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
+    trust_proxy_headers: false # Deprecated in 2.0; will be removed in 2.3 (used trusted_proxies instead)
     trusted_proxies: ~
-    fragments: { path: /_proxy }    
-    session:
-        save_path: %kernel.root_dir%/var/sessions
+    session:         ~
 
 # Twig Configuration
 twig:
@@ -93,4 +92,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-

@@ -8,7 +8,11 @@ use Application\Success\PortalBundle\Util\Util;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Ibrows\Bundle\NewsletterBundle\Model\User\MandantUserInterface;
+//use Ibrows\Bundle\NewsletterBundle\Model\User\MandantUserInterface; implements MandantUserInterface
+//protected $mandant;
+//public function getMandant() {
+  //return $this->mandant;
+//}
 
 /**
  * User entity
@@ -17,7 +21,7 @@ use Ibrows\Bundle\NewsletterBundle\Model\User\MandantUserInterface;
  * @ORM\Table(name="success_users")
  * @ORM\HasLifecycleCallbacks
  */
-class User extends BaseUser implements MandantUserInterface {
+class User extends BaseUser {
 
   /**
    * @var integer
@@ -95,48 +99,10 @@ class User extends BaseUser implements MandantUserInterface {
 
   /**
    *
-   * @ORM\Column(name="is_columnista", type="boolean", options={ "default"= false }, nullable=true )
-   */
-  protected $is_columnista;
-
-  /**
-   *
    * @ORM\Column(name="receive_news", type="boolean", options={ "default"= false }, nullable=true )
    */
   protected $receive_news;
 
-  /**
-   *
-   * @ORM\ManyToOne(targetEntity="Application\Success\CompanyBundle\Entity\Occupation")
-   * @ORM\JoinColumn(name="occupation_id", referencedColumnName="id")
-   */
-  protected $occupation;
-
-  /**
-   *
-   * @ORM\ManyToOne(targetEntity="Application\Success\CompanyBundle\Entity\Company")
-   * @ORM\JoinColumn(name="company_work_id", referencedColumnName="id")
-   */
-  protected $company_work;
-  
-  /**
-   *
-   * @ORM\ManyToOne(targetEntity="Application\Success\CompanyBundle\Entity\Company")
-   * @ORM\JoinColumn(name="company_owner_id", referencedColumnName="id")
-   */
-  protected $company_owner;
-
-  /**
-   *
-   * @ORM\OneToMany(targetEntity="Application\Success\PortalBundle\Entity\News", mappedBy="columnista")
-   * 
-   */
-  protected $news;
-
-  /**
-   * @ORM\Column(type="string", nullable=true)
-   */
-  protected $mandant;
 
   /**
    * Construct a new user
@@ -144,7 +110,6 @@ class User extends BaseUser implements MandantUserInterface {
   public function __construct() {
     parent::__construct();
     $this->groups = new ArrayCollection();
-    $this->news = new ArrayCollection();
   }
 
   /**
@@ -163,13 +128,6 @@ class User extends BaseUser implements MandantUserInterface {
    */
   public function setId($id) {
     $this->id = $id;
-  }
-
-  /**
-   * @return string
-   */
-  public function getMandant() {
-    return $this->mandant;
   }
 
   /**
@@ -365,90 +323,6 @@ class User extends BaseUser implements MandantUserInterface {
   }
 
   /**
-   * Set is_columnista
-   *
-   * @param boolean $isColumnista
-   * @return User
-   */
-  public function setIsColumnista($isColumnista) {
-    $this->is_columnista = $isColumnista;
-
-    return $this;
-  }
-
-  /**
-   * Get is_columnista
-   *
-   * @return boolean 
-   */
-  public function getIsColumnista() {
-    return $this->is_columnista;
-  }
-
-  /**
-   * Set occupation
-   *
-   * @param \Application\Success\CompanyBundle\Entity\Occupation $occupation
-   * @return User
-   */
-  public function setOccupation(\Application\Success\CompanyBundle\Entity\Occupation $occupation = null) {
-    $this->occupation = $occupation;
-
-    return $this;
-  }
-
-  /**
-   * Get occupation
-   *
-   * @return \Application\Success\CompanyBundle\Entity\Occupation 
-   */
-  public function getOccupation() {
-    return $this->occupation;
-  }
-
-  /**
-   * Set company
-   *
-   * @param \Application\Success\CompanyBundle\Entity\Company $company
-   * @return User
-   */
-  public function setCompanyWork(\Application\Success\CompanyBundle\Entity\Company $company = null) {
-    $this->company_work = $company;
-
-    return $this;
-  }
-
-  /**
-   * Get company
-   *
-   * @return \Application\Success\CompanyBundle\Entity\Company 
-   */
-  public function getCompanyWork() {
-    return $this->company_work;
-  }
-  
-  /**
-   * Set company
-   *
-   * @param \Application\Success\CompanyBundle\Entity\Company $company
-   * @return User
-   */
-  public function setCompanyOwner(\Application\Success\CompanyBundle\Entity\Company $company = null) {
-    $this->company_owner = $company;
-
-    return $this;
-  }
-
-  /**
-   * Get company
-   *
-   * @return Company 
-   */
-  public function getCompanyOwner() {
-    return $this->company_owner;
-  }
-
-  /**
    * Set name
    *
    * @param string $name
@@ -511,36 +385,6 @@ class User extends BaseUser implements MandantUserInterface {
     return $this->receive_news;
   }
 
-  /**
-   * Add news
-   *
-   * @param \Application\Success\PortalBundle\Entity\News $news
-   * @return User
-   */
-  public function addNew(\Application\Success\PortalBundle\Entity\News $news) {
-    $this->news[] = $news;
-
-    return $this;
-  }
-
-  /**
-   * Remove news
-   *
-   * @param \Application\Success\PortalBundle\Entity\News $news
-   */
-  public function removeNew(\Application\Success\PortalBundle\Entity\News $news) {
-    $this->news->removeElement($news);
-  }
-
-  /**
-   * Get news
-   *
-   * @return \Doctrine\Common\Collections\Collection 
-   */
-  public function getNews() {
-    return $this->news;
-  }
-
   public function getAbsolutePath() {
     return null === $this->avatar ? null : $this->getUploadRootDir() . '/' . $this->avatar;
   }
@@ -555,7 +399,7 @@ class User extends BaseUser implements MandantUserInterface {
 
   protected function getUploadDir() {
     // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/avatar in the view.
-    return 'uploads/columnistas';
+    return 'uploads/usuarios';
   }
 
   /**
@@ -604,10 +448,6 @@ class User extends BaseUser implements MandantUserInterface {
 
   public function __toString() {
     return $this->name . ' ' . $this->surname;
-  }
-
-  public function haveToComplete() {
-    return $this->description == "";
   }
 
 }
