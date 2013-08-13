@@ -48,8 +48,6 @@ class UsuarioRegistroType extends BaseType {
             'expanded' => true
         ))
         ->add('description', 'textarea')
-//        ->add('occupation')
-//        ->add('company')
         ->add('country', 'choice', array(
                   'choices'   => array(
                                   'UY' => 'Uruguay', 

@@ -27,35 +27,12 @@ class UserAdmin extends SuccessUserAdmin {
       ->with('General')
         ->add('name', null, array('required' => false))
         ->add('surname', null, array('required' => false))
-        ->add('city', null, array('required' => false))
-        ->add('is_columnista')            
+        ->add('city', null, array('required' => false))    
         ->add('phone')
         ->add('file', 'file', $options)
         ->add('description')
         ->add('receive_news')
       ->end();
-  }
-
-  /**
-   * List
-   * @param \Sonata\AdminBundle\Datagrid\ListMapper $listMapper
-   *
-   * @return void
-   */
-  protected function configureListFields(ListMapper $listMapper) {
-    parent::configureListFields($listMapper);
-  }
-
-  /**
-   * Filters
-   * @param \Sonata\AdminBundle\Datagrid\DatagridMapper $datagridMapper
-   *
-   * @return void
-   */
-  protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
-    parent::configureDatagridFilters($datagridMapper);
-    $datagridMapper
-            ->add('is_columnista');
   }
 
 
