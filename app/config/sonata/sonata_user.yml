@@ -1,0 +1,71 @@
+#
+# more information can be found here http://sonata-project.org/bundles/user
+#
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Success\UserBundle\Entity\User
+
+    group:
+        group_class: Application\Success\UserBundle\Entity\Group
+
+    resetting:
+        token_ttl: 86400
+        email:
+            from_email: # Use this node only if you don't want the global email address for the resetting email
+                address:        chugas488@gmail.com
+                sender_name:    Justrave
+
+    profile:
+        form:
+            type: success_user_profile
+
+    registration:
+        form:
+            type: success_user_registration
+            handler: success.form.handler.registration
+            validation_groups: [Default, SuccessRegistration]
+
+    service:
+        user_manager: success.user.manager
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    FOSUserBundle: ~
+                    SuccessUserBundle: ~
+                    SonataUserBundle: ~
+
+sonata_user:
+    security_acl:             false
+    table:
+        user_group:           success_user_group
+
+#    impersonating:
+#        route:                page_slug
+#        parameters:           { path: / }
+
+    google_authenticator:
+        server:               %sonata_user.google_authenticator.server%
+        enabled:              true
+
+    manager_type:             orm
+
+    profile:
+        form:
+            type:                 sonata_user_profile
+            handler:              sonata.user.profile.form.handler.default
+            name:                 sonata_user_profile_form
+            validation_groups:
+                # Defaults:
+                - Profile
+                - Default
+
+    class: 
+        user: Application\Success\UserBundle\Entity\User
+        group: Application\Success\UserBundle\Entity\Group
+
+#sonata.user.admin.user.entity: Application\Success\UserBundle\Entity\User

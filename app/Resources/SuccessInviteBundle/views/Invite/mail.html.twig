@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <table cellpadding="0" cellspacing="0" style="width:500px;border:none;margin:10px">
+      <tbody>
+        <tr>
+          <td><img alt="Agrotemario" src="{{ asset('images/Logo-Agrotemario.png', 'cdn1') }}"></td>
+        </tr>
+        <tr>
+          Hola, {{ userFrom }} te ha invitado a formar parte de Agrotemario.
+        </tr>
+        <tr>
+          <td style="font-family:'Lucida Sans Unicode','Lucida Grande',sans-serif;text-align:left;color:#4b4b4b;font-size:12px;padding:15px 0">
+            Unete registrandote en el sitio. Haz click en el siguiente vinculo para darte de alta y comenzar a informarte de todo lo que pasa en el Agro.
+            <a href="{{ referer_url(userFrom) }}" target="_blank">
+              {{ referer_url(userFrom) }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

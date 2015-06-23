@@ -1,0 +1,112 @@
+ccdn_forum_forum:
+    template:
+        engine:               twig
+        pager_theme:          CCDNForumForumBundle:Common:Paginator/twitter_bootstrap.html.twig
+    forum:
+        admin:
+            create:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            delete:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            edit:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            list:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+    category:
+        admin:
+            create:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            delete:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            edit:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            list:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+        user:
+            last_post_datetime_format:  d-m-Y - H:i
+            index:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+            show:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+    board:
+        admin:
+            create:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            delete:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            edit:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            list:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+        user:
+            show:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                topics_per_page:      50
+                topic_title_truncate:  50
+                first_post_datetime_format:  d-m-Y - H:i
+                last_post_datetime_format:  d-m-Y - H:i
+    topic:
+        moderator:
+            change_board:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            delete:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+        user:
+            flood_control:
+                post_limit:           4
+                block_for_minutes:    1
+            show:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                posts_per_page:       20
+                closed_datetime_format:  d-m-Y - H:i
+                deleted_datetime_format:  d-m-Y - H:i
+            create:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            reply:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+    post:
+        moderator:
+            unlock:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+        user:
+            show:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+            edit:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            delete:
+                layout_template:      CCDNForumForumBundle::base.html.twig
+                form_theme:           CCDNForumForumBundle:Common:Form/fields.html.twig
+            lock:
+                enable:               true
+                after_days:           7
+    item_post:
+        created_datetime_format:  d-m-Y - H:i
+        edited_datetime_format:  d-m-Y - H:i
+        locked_datetime_format:  d-m-Y - H:i
+        deleted_datetime_format:  d-m-Y - H:i
+    subscription:
+        list:
+            layout_template:      CCDNForumForumBundle::base.html.twig
+            topics_per_page:      50
+            topic_title_truncate:  50
+            first_post_datetime_format:  d-m-Y - H:i
+            last_post_datetime_format:  d-m-Y - H:i
+    fixtures:
+        user_admin:           user-admin
+    seo:
+        title_length:         67

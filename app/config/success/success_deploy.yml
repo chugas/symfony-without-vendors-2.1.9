@@ -1,0 +1,18 @@
+deploy:
+  beta:
+    rsync-options: '-azC --force --delete --progress -h --checksum'
+    host: enbeta.net
+    user: chu
+    dir:  /home/enbeta/domains/justrave.enbeta.net/itsuccess/prod
+    port: 69
+    post_deploy_operations: ~
+#        - app/console cache:clear
+#        - app/console assets:install
+#        - app/console assetic:dump
+  itsuccess:
+    rsync-options: '-azC --force --delete --progress -h --checksum'
+    host: itsuccess.uy
+    user: success
+    dir:  /home/success/public_html/jr
+    port: 12141
+    post_deploy_operations: ~

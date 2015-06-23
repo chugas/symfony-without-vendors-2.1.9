@@ -1,0 +1,34 @@
+<div id="successInvite" style="display:none;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>{{ 'user.registro.Invita a tu amigos' | trans }}</h3>
+  </div>
+  <form action="{{ path('success_invite_list') }}" method="POST">    
+    <fieldset>
+      <div class="modal-body">
+        <div class="head">
+          <h5>{{ 'user.registro.Invita a %count% amigos.' | trans({'%count%': contacts | length}) }}</h5>
+          <p>{{ 'user.registro.Selecciona a quíén quieres mandar una invitacíon por mail para unisrse a Agrotemario' | trans }}</p>
+        </div>
+        <div class="content_invitar">
+          <div class="head_invitar">
+            <label class="checkbox">
+              <input type="checkbox" class="checkall"> {{ 'user.registro.Seleccionar todos' | trans }}
+            </label>
+          </div>
+          <div class="body">
+              {% for contact in contacts %}
+                <label class="checkbox white">
+                  <input type="checkbox" name="emails[]" value="{{ contact.email }}" /> {{ contact.name }}
+                  <p><a href="#">&#60;{{ contact.email }}&#62;</a></p>
+                </label>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success next" data-load="true"><i class="icon-save"></i> {{ 'user.registro.Invitar Contactos' | trans }}</button>
+      </div>
+    </fieldset>
+  </form>
+</div>

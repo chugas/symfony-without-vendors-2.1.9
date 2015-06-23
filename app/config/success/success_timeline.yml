@@ -1,0 +1,36 @@
+spy_timeline:
+    drivers:
+        orm:
+            object_manager: doctrine.orm.entity_manager
+            classes:
+                query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
+                timeline:  Application\Success\CoreBundle\Entity\Timeline
+                action:    Application\Success\CoreBundle\Entity\Action
+                component: Application\Success\CoreBundle\Entity\Component
+                action_component: Application\Success\CoreBundle\Entity\ActionComponent
+                
+    notifiers:
+        - spy_timeline.unread_notifications
+
+    # let empty if you want to use default paginator
+    # or use your own.
+    paginator: ~
+    #spy_timeline.paginator.knp
+
+    filters:
+        duplicate_key:
+            priority: 10
+        data_hydrator:
+            priority: 20
+            filter_unresolved: true
+            locators:
+                - spy_timeline.filter.data_hydrator.locator.doctrine_orm
+    spread:
+        on_subject: false         # DEFAULT IS TRUE  Spread each action on subject too
+        on_global_context: true   # Spread automatically on global context
+        deployer: spy_timeline.spread.deployer.default
+        delivery: immediate
+    render:
+        path:     'WebBundle:Timeline/verbs'
+        resources:
+            - 'WebBundle:Timeline:components.html.twig'                

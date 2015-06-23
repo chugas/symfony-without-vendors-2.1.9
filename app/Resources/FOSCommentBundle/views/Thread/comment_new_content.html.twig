@@ -1,0 +1,56 @@
+{% set first = first|default(false) %}
+
+{% set url_parameters = {'id': id } %}
+{% if parent is not null %}
+    {% set url_parameters = url_parameters|merge({'parentId': parent.id}) %}
+{% endif %}
+
+{#
+<form role="form" action="{{ url('fos_comment_post_thread_comments', url_parameters) }}" data-parent="{{ parent.id|default() }}" method="POST" onsubmit="addComment(this); return false;">
+  <a href="{{ path('core_user', {'username' : app.user.username }) }}">
+    {% if app.user.avatar is not empty %}
+      <img src="{{ app.user.getWebPath() | apply_filter('user_thumb') }}" title="{{ app.user }}" class="img-circle pull-left" />
+    {% else %}
+      <img alt="{{ app.user }}" src="/assets/frontend/images/assets/avatar_{{ app.user.gender|default('m') }}.jpg" class="img-circle pull-left" />
+    {% endif %}
+  </a>
+  
+  <div class="media-body">
+    {{ form_errors(form) }}
+    {{ form_errors(form.body) }}
+    {{ form_widget(form.body, { 'attr' : {'class': 'green-border', 'placeholder': 'news.comentarios.Comenta aqui' | trans, 'rows': '3'} } ) }}
+    {{ form_rest(form) }}
+  </div>
+
+  <div class="comentar"><button type="submit" class="btn btn-green btn-entrar comment">{% trans from 'FOSCommentBundle' %}fos_comment_comment_new_submit{% endtrans %}</button></div>
+</form>#}
+
+{#onsubmit="addComment(this); return false;"#}
+<div style="clear:both"></div>
+<div class="comentario">
+  <a name="form-comentario"></a>
+  <form id="comment-form" role="form" action="{{ url('fos_comment_post_thread_comments', url_parameters) }}" data-parent="{{ parent.id|default() }}" method="POST" class="fos_comment_comment_new_form">
+    {{ form_errors(form) }}
+    {{ form_errors(form.body) }}
+    <div class="buttons">
+      {#<button class="profile">
+        <img src="/assets/img/profile_comment.png" />
+      </button>
+      <a class="camera fancybox" href="#inline8"><img src="/assets/img/camera_comment.png"  /></a>#}
+    </div>
+    <div class="text-area">
+      <div class="content_entry" id="RICH_TEXTAREA" contenteditable="true"></div>
+      <div id="RICH_TEXTAREA_MEDIA" class="content_entry_media"></div>
+    </div>
+
+    <div style="display:none">
+      {{ form_widget(form.body, { 'attr' : {'class': 'output' } } ) }}
+      {{ form_rest(form) }}
+    </div>
+
+    <button id="form-button" type="submit">Enviar</button>
+
+    <div style="clear:both"></div>
+    <br>
+  </form>
+</div>

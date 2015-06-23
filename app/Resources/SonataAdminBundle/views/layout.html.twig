@@ -1,0 +1,40 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+  
+{% block side_bar_nav %}
+
+  <ul class="sidebar-menu">
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-folder"></i><span>Radio</span>
+        <i class="fa pull-right fa-angle-left"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="{{ path('admin_radio') }}" style="margin-left: 10px;"><i class="fa fa-angle-double-right"></i> Configuracion</a></li>
+      </ul>
+    </li>
+  </ul>
+  {{ parent() }}
+  {#% if app.security.token and is_granted('ROLE_SONATA_ADMIN') %}
+    <ul class="sidebar-menu">
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-folder"></i><span>Newsletter</span>
+          <i class="fa pull-right fa-angle-left"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ path('ibrows_newsletter_index') }}" {{ path('ibrows_newsletter_index') }} style="margin-left: 10px;" target="_blank"><i class="fa fa-angle-double-right"></i> Newsletter</a></li>
+        </ul>
+      </li>
+    </ul>
+  {% endif %#}
+{% endblock %}
+
+{% block side_bar_after_nav %}
+  <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px"><a href="http://www.justrave.com" rel="noreferrer" target="_blank">justrave.com</a></p>
+{% endblock %}
+                                
+{% block sonata_wrapper %}
+  {{ parent() }}
+  {#{ tinymce_init() }#}
+{% endblock %}
+    

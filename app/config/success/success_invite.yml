@@ -1,0 +1,13 @@
+success_invite:
+    referer_class: Application\Success\UserBundle\Entity\User
+    referer_relation_class: Application\Success\UserBundle\Entity\RefererRelation
+
+    google:
+        app_name: justrave
+        client_id: %success.oauth.google.clientid%
+        client_secret: %success.oauth.google.clientsecret%
+        state: auth
+        access_type: online
+        scopes:
+            contacts: true
+        callback_route: web_google_redirect_google

@@ -1,0 +1,69 @@
+{% spaceless %}
+  {% set user = comment.author %}
+  {#<a href="{{ path('core_user', {'username' : user.username }) }}">
+    {% if user.avatar is not empty %}
+      <img width="50" height="50" src="{{ user.getWebPath() | apply_filter('user_thumb') }}" title="{{ user }}" class="img-circle pull-left" />
+    {% else %}
+      <img width="50" height="50" alt="{{ user }}" src="/images/avatar_{{ user.gender|default('m') }}.jpg" class="img-circle pull-left" />
+    {% endif %}
+  </a>#}
+  <div class="coment_usr">
+    <div class="avatar">
+      <img width="40" height="40" src="/assets/img/avatar_u.jpg" />
+    </div>
+      
+    <div class="coment">
+      <p>
+        <span class="nombre">{{ comment.authorName }}</span>&nbsp;<span class="fecha">{{ comment.createdAt | fecha('medium', 'short', app.request.locale) }}</span>
+        
+        {% if fos_comment_can_edit_comment(comment) %}
+          <a class="fos_comment_comment_edit_show_form edit" href="javascript:void(0)" data-container="#fos_comment_comment_body_{{ comment.id }}" data-url="{{ url("fos_comment_edit_thread_comment", {"id": comment.thread.id, "commentId": comment.id}) }}"></a>
+          {#<button data-container="#fos_comment_comment_body_{{ comment.id }}" data-url="{{ url("fos_comment_edit_thread_comment", {"id": comment.thread.id, "commentId": comment.id}) }}">{% trans from 'FOSCommentBundle' %}fos_comment_comment_edit{% endtrans %}</button>#}
+        {% endif %}
+
+        {% if fos_comment_can_delete_comment(comment) %}
+          {% if comment is fos_comment_in_state(constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_DELETED')) %}
+            {#<button data-url="{{ url("fos_comment_remove_thread_comment", {"id": comment.thread.id, "commentId": comment.id, "value": constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_VISIBLE') }) }}" class="fos_comment_comment_remove">{% trans from 'FOSCommentBundle' %}fos_comment_comment_undelete{% endtrans %}</button>#}
+          {% else %}
+            <a class="fos_comment_comment_remove delete" data-url="{{ url("fos_comment_remove_thread_comment", {"id": comment.thread.id, "commentId": comment.id, "value":  constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_DELETED')}) }}" href="javascript:void(0)"></a>
+          {% endif %}
+        {% endif %}
+      </p>
+
+      <div id="fos_comment_comment_body_{{ comment.id }}">
+        {% if comment is fos_comment_in_state(constant('FOS\\CommentBundle\\Model\\CommentInterface::STATE_DELETED')) %}
+          <p>{% trans from 'FOSCommentBundle' %}fos_comment_comment_deleted{% endtrans %}</p>
+        {% else %}
+          <p>{{ comment.body | bb_parse | raw }}</p>
+        {% endif %}
+      </div>
+
+      {% if fos_comment_can_vote(comment) %}
+        {#<button data-url="{{ url("fos_comment_new_thread_comment_votes", {"id": comment.thread.id, "commentId": comment.id, "value": 1}) }}" class="fos_comment_comment_vote">{% trans from 'FOSCommentBundle' %}fos_comment_comment_show_voteup{% endtrans %}</button>
+        <button data-url="{{ url("fos_comment_new_thread_comment_votes", {"id": comment.thread.id, "commentId": comment.id, "value": -1}) }}" class="fos_comment_comment_vote">{% trans from 'FOSCommentBundle' %}fos_comment_comment_show_votedown{% endtrans %}</button>#}
+        <a class="fos_comment_comment_vote like" href="javascript:void(0)" data-url="{{ url("fos_comment_new_thread_comment_votes", {"id": comment.thread.id, "commentId": comment.id, "value": 1}) }}">tá bueno <span id="fos_comment_score_{{ comment.id }}">({{ comment.score }})</span></a>
+      {% endif %}
+
+      {#% if fos_comment_can_comment(comment) %}
+        <a style="margin-left: 10px;" class="fos_comment_comment_reply_show_form responder" href="javascript:void(0)" data-url="{{ url('fos_comment_new_thread_comments', {"id": comment.thread.id}) }}" data-name="{{ comment.authorName }}" data-parent-id="{{ comment.id }}">responder</a>
+        <a style="margin-left: 10px;" class="responder" href="#form-comentario">responder</a>
+      {% endif %#}
+        
+      <div class="fos_comment_comment_replies">
+        {% if children is defined %}
+          {% set comments = children %}
+          {% set depth = depth + 1 %}
+          {% set parent = comment %}
+          {% set view = view %}
+          <div id="collection_comments_{{ depth }}">
+            {% for commentinfo in comments %}
+              {% include "FOSCommentBundle:Thread:comment.html.twig" with { "children": commentinfo.children, "comment": commentinfo.comment, "depth": depth, "view": view, 'loop' : loop } %}
+            {% endfor %}
+          </div>
+          {#% include "FOSCommentBundle:Thread:comments.html.twig" with { "comments": children, "depth": depth + 1, "parent": comment, "view": view } %#}
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+{% endspaceless %}

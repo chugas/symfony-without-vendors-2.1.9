@@ -1,0 +1,38 @@
+avalanche_imagine:
+    source_root:  %kernel.root_dir%/../web
+    web_root:     %kernel.root_dir%/../web
+    cache_prefix: uploads/media/cache
+    driver:       gd
+            
+    filters:
+        ###############################################
+        # EVENTOS
+        ###############################################
+        evento_thumb:
+            type:    crop_centered
+            options: { size: [68, 68], quality: 90, format: png }
+        evento_small:
+            type:    relative_resize
+            options: { widen: 179, quality: 75 }
+        evento_medium:
+            type:    relative_resize
+            options: { widen: 445, quality: 75 }
+        evento_big:
+            type:    crop_centered
+            options: { size: [620, 305], quality: 80 }
+        evento_flyer:
+            type:    relative_resize
+            options: { widen: 672, quality: 75 }
+            
+        ###############################################
+        # USUARIOS
+        ###############################################
+        users_thumb:
+            type:    thumbnail
+            options: { size: [68, 68], quality: 80, format: png }
+            
+        users_small:
+            type:    thumbnail
+            options: { size: [144, 144], quality: 75, format: png }
+
+  

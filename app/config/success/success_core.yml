@@ -1,0 +1,16 @@
+core:
+    driver: doctrine/orm  
+    classes:
+        evento:
+            model: Application\Success\CoreBundle\Entity\Evento
+            controller: Application\Success\CoreBundle\Controller\EventoController
+            repository: Application\Success\CoreBundle\Repository\Doctrine\ORM\EventoRepository
+            form: Application\Success\CoreBundle\Form\Type\EventoType
+        productora:
+            model: Application\Success\CoreBundle\Entity\Productora
+            controller: Application\Success\CoreBundle\Controller\ProductoraController
+            repository: Application\Success\CoreBundle\Repository\Doctrine\ORM\ProductoraRepository
+            form: Application\Success\CoreBundle\Form\Type\ProductoraType
+    mailer:
+        from: soporte@agrotemario.com
+        to: chugas488@gmail.com
