@@ -1,0 +1,7 @@
+parameters:
+
+services:
+    success.form.type.review:
+        class: Application\Success\CoreBundle\Form\Type\ReviewType
+        tags:
+          - { name: form.type }

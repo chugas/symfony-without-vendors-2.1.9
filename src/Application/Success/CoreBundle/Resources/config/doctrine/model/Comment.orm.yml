@@ -1,0 +1,28 @@
+Application\Success\CoreBundle\Entity\Comment:
+    type: entity
+    table: success_comment
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        score:
+            type: integer            
+    manyToOne:
+        author:
+            targetEntity: Symfony\Component\Security\Core\User\UserInterface
+            cascade: []
+            nullable: false
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+                onDelete: CASCADE      
+        thread:
+            targetEntity: Application\Success\CoreBundle\Entity\Thread
+            cascade: []
+            nullable: false
+            joinColumn:
+                name: thread_id
+                referencedColumnName: id
+                onDelete: CASCADE
+  

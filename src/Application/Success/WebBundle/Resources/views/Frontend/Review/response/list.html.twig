@@ -1,0 +1,9 @@
+{% for review in reviews %}
+  <div class="text-review more-less">
+    <h2 class="text-review-title"><a href="{{ path('web_reviews_show', {'id': review.id, 'slug': review.slug }) }}"><p>{{ review.title }}</p></a></h2>
+    <div class="text-review more-block">
+      <p>{{ review.description | truncate(800, true) | bb_parse | raw | nl2br }}</p>
+    </div>
+    <a class="mas hidden" href="{{ path('web_reviews_show', {'id': review.id, 'slug': review.slug }) }}">Ver mas</a>
+  </div>
+{% endfor %}

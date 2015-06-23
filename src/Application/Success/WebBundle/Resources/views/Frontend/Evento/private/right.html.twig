@@ -1,0 +1,39 @@
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1470236429855564',
+      xfbml      : true,
+      version    : 'v2.2',
+      oauth  : true,
+      frictionlessRequests : true
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+{% if (is_granted('ROLE_USER')) %}
+  <div class="crear">
+    <a href="{{ path('web_eventos_create') }}">AGREGAR FIESTA</a>
+  </div>
+  <div class="invitar">
+    <a class="fancybox" href="#jr_invite_modal">INVITÁ AMIGOS</a>
+  </div>
+  {#<div class="subir">
+    <a class="fancybox" href="#jr_music_modal">AGREGAR MÚSICA</a>
+  </div>#}
+
+  <div class="modals">
+    <div id="jr_invite_modal" style="display:none;">
+      {% include 'WebBundle:Frontend/Invite:forms.html.twig' %}
+    </div>
+
+    {% include 'WebBundle:Frontend/Media:modal_music.html.twig' with {'function_name': 'submit_form_soundcloud_profile', 'objectClass': 'user', 'objectId': app.user.id } %}
+  </div>
+{% endif %}

@@ -1,0 +1,50 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+  <div class="content center">
+    <div class="header_form">
+      <div class="fiestas">
+        <p><a href="#">REGISTRARSE</a></p>
+      </div>
+    </div>
+    <div class="col-left">
+      <div class="login_registro">
+        <form action="{{ path('fos_user_registration_register') }}" method="post" autocomplete="off">
+          {{ form_errors(form) }}
+          {{ form_widget(form._token) }}
+          <div class="col-right">
+            <label>NOMBRE</label>
+            <label>{{ form_widget(form.firstname) }}</label>
+            <label>APELLIDO</label>
+            <label>{{ form_widget(form.lastname) }}</label>
+            <label>E-MAIL</label>
+            <label>{{ form_widget(form.email) }}</label>
+            <label>CONTRASEÑA</label>
+            <label>{{ form_widget(form.plainPassword.first) }}</label>
+            <label>REPETIR CONTRASEÑA</label>
+            <label>{{ form_widget(form.plainPassword.second) }}</label>
+            <label class="button"><button type="submit">REGISTRATE</button> {{ render(url('hwi_oauth_connect')) }}</label>
+            <div style="clear:both"></div>
+            {% if form.firstname.vars.errors|length > 0 %}
+              <label class="error"><img src="/assets/img/error.png" width="8" height="8" /> Debes ingresar un nombre</label>
+            {% endif %}
+            {% if form.lastname.vars.errors|length > 0 %}
+              <label class="error"><img src="/assets/img/error.png" width="8" height="8" /> Debes ingresar un apellido</label>
+            {% endif %}
+            {% if form.email.vars.errors|length > 0 %}
+              <label class="error"><img src="/assets/img/error.png" width="8" height="8" /> E-mail invalido</label>    
+            {% endif %}
+            {% if form.plainPassword.first.vars.errors|length > 0 or form.plainPassword.second.vars.errors|length > 0 %}
+              <label class="error"><img src="/assets/img/error.png" width="8" height="8" /> Las contaseñas no coinciden</label>    
+            {% endif %}            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{#<div style="clear:both"></div>
+<label class="error"><img src="images/error.png" width="8" height="8" /> No puso contaseña</label>
+<p class="wrong">Esto es un mensaje de error, no se si  iría acá o en donde pero este es el estilo</p>#}
+
+    

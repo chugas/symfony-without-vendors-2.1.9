@@ -1,0 +1,15 @@
+web_productora:
+    pattern:  /
+    defaults: { _controller: CoreBundle:Productora:index }
+
+web_productora_create:
+    pattern:  /crear
+    defaults: { _controller: CoreBundle:Productora:create }
+
+web_productora_update:
+    pattern:  /{id}/modificar/
+    defaults: { _controller: CoreBundle:Productora:edit }
+
+web_productora_show:
+    pattern:  /{id}/{slug}/
+    defaults: { _controller: CoreBundle:Productora:show }

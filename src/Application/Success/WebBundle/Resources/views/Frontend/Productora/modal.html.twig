@@ -1,0 +1,11 @@
+<div id="productora_create" style="display:none;">
+  <div class="crear_videos">
+    <p class="titulo">PRODUCTORA</p>
+    <form id="jr_form_productora" action="{{ path('web_productora_create') }}" method="POST" {{ form_enctype(form) }}>
+      {{ form_widget(form._token) }}
+      <label>Ingresa el nombre de la Productora</label>
+      <label>{{ form_widget(form.name, {'attr': { 'autocomplete': 'off' } } ) }}</label>
+      <label class="button"><button class="camera-add" type="button" onclick="return submit_form_productora(this, event)"><i class="icon-envelope"></i>&nbsp;Crear</button></label>       
+    </form> 
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{#% block header_title %}
+<div class="header_form2">
+  <div class="fiestas">
+    <p><a href="javascript:void(0)">quienes somos?</a></p>
+  </div>
+</div>
+{% endblock %#}
+
+{% block content %}
+  <div class="content center">
+    <div class="header_form">
+      <div class="fiestas">
+        <p><a href="#">LOGIN</a></p>
+      </div>
+    </div>
+
+    <div class="col-left">
+      <div class="login_registro">     
+        <form action="{{ path('fos_user_security_check') }}" method="post" autocomplete="off">
+          <div class="col-left">
+            <label>Email</label>
+            <label><input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" /></label>
+            <label>Password</label>
+            <label><input type="password" id="password" name="_password" /></label>
+            <label for="remember_me" class="remember_me">Remember me? &nbsp; <input type="checkbox" id="remember_me" name="_remember_me" value="on" /></label>
+            <label><a href="{{ path('fos_user_resetting_request') }}">Recuperar contraseña</a></label>
+            <label class="button"><button type="submit" style="float:left; margin-right: 20px; margin-top: 20px;">Entrar</button>{{ render(url('hwi_oauth_connect')) }}</label>
+            <label class="line"></label>
+            <label>Si tenías usuario en la versión anterior <br/>del sitio podés utitlizar el mismo<br/> e-mail y contraseña. Si no recordás el <br/>e-mail o no tenés acceso comunicarse<br/> con el administrador a <br/><a href="mailto:alegrasso@justrave.com">alegrasso@justrave.com</a></label>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% if error %}
+      <div style="clear:both"></div>
+      <p class="wrong">Nombre de usuario o password incorrectos!</p>
+    {% endif %}
+  </div>
+{% endblock %}

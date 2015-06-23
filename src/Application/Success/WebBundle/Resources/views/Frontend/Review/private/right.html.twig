@@ -1,0 +1,16 @@
+{% if (is_granted('ROLE_USER')) %}
+  <div class="crear">
+    <a href="{{ path('web_reviews_create') }}">AGREGAR REVIEW</a>
+  </div>
+  <div class="invitar">
+    <a class="fancybox" href="#jr_invite_modal">INVITÁ AMIGOS</a>
+  </div>
+
+  <div class="modals">
+    <div id="jr_invite_modal" class="modal hide fade">
+      {#% include 'SuccessInviteBundle:Invite:show.html.twig' %#}
+    </div>
+
+    {% include 'WebBundle:Frontend/Media:modal_music.html.twig' with {'function_name': 'submit_form_soundcloud_profile', 'objectClass': 'user', 'objectId': app.user.id } %}
+  </div>
+{% endif %}

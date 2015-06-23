@@ -1,0 +1,84 @@
+parameters:
+    success.oauth.user_provider.class: Application\Success\CoreBundle\OAuth\UserProvider
+    frontend.manager.mailer.class:  Application\Success\CoreBundle\Manager\MailerManager
+    frontend.manager.mailer.from:   %core.mailer.from%
+    frontend.manager.mailer.to:     %core.mailer.to%
+
+services:
+    success.oauth.user_provider:
+        class: %success.oauth.user_provider.class%
+        arguments:
+            - "@fos_user.user_manager"
+            - { amazon: amazonUid, facebook: facebookUid, google: gplusUid }
+
+    success.admin.radio:
+        class: Application\Success\CoreBundle\Storage\YamlStorage
+        arguments:
+            - %success.settings.path%
+
+#    kbs_oauth.resource_owners.yahoo:
+#        class: "Application\Success\CoreBundle\OAuth\ResourceOwner\YahooResourceOwner"
+#        arguments:
+#            http_client: "@hwi_oauth.http_client"
+#            http_utils: "@security.http_utils"
+#            options:
+#                client_id:           %success_oauth.yahoo.client_id%
+#                client_secret:       %success_oauth.yahoo.client_secret%
+#            name: "yahoo"
+#            storage_session: "@hwi_oauth.storage.session"
+
+#    kbs_oauth.resource_owners.google:
+#        class: "Application\Success\CoreBundle\OAuth\ResourceOwner\GoogleResourceOwner"
+#        arguments:
+#            http_client: "@hwi_oauth.http_client"
+#            http_utils: "@security.http_utils"
+#            options:
+##                client_id:           %success.oauth.google.clientid%
+#                client_secret:       %success.oauth.google.clientsecret%
+#            name: "google"
+#            storage_session: "@hwi_oauth.storage.session"
+
+    ###############################################    
+    #TIMELINE LISTENER
+    ###############################################
+    success.timeline.listener:
+        class: Application\Success\CoreBundle\EventListener\TimelineListener
+        arguments: ["@spy_timeline.action_manager"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    #success.comment.listener:
+    #    class: Application\Success\CoreBundle\EventListener\CommentListener
+    #    arguments: ["@success.repository.news"]
+    #    tags:
+    #        - { name: kernel.event_subscriber }
+
+    success.timeline.spread:
+        class: Application\Success\CoreBundle\Timeline\Spread
+        tags:
+            - { name: spy_timeline.spread }
+            
+    ###############################################    
+    #CONTACTO FORM
+    ###############################################            
+    success.contact.type:
+        class: Application\Success\CoreBundle\Form\Type\ContactType
+        
+    success.manager.mailer:
+        class: %frontend.manager.mailer.class%
+        arguments:  [%frontend.manager.mailer.from%, %frontend.manager.mailer.to%, '@swiftmailer.mailer.realtime']        
+        
+    success.image.generator:
+        class: Application\Success\MediaBundle\Generator\BasicGenerator
+
+    success.image.provider:
+        class: Application\Success\MediaBundle\Provider\BasicImageProvider
+        arguments: ['@sonata.media.cdn.server', '@success.image.generator']
+        
+    sonata.media.provider.soundcloud:
+        class: Application\Success\MediaBundle\Provider\SoundCloudProvider
+        arguments: ['sonata.media.provider.soundcloud', '@sonata.media.filesystem.local', '@sonata.media.cdn.server', '@sonata.media.generator.default', '@sonata.media.thumbnail.format', '@sonata.media.buzz.browser', '@sonata.media.metadata.proxy']
+        tags:
+            - { name: sonata.media.provider }
+        calls:
+            - [setTemplates, [helper_thumbnail: "SonataMediaBundle:Provider:thumbnail.html.twig", helper_view: "SuccessMediaBundle:Provider:view_soundcloud.html.twig"]]

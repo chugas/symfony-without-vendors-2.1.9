@@ -1,0 +1,56 @@
+{% extends 'WebBundle:Frontend/Layout:header_out.html.twig' %}
+
+{% block header_user %}
+<div class="user">
+  <div class="loged">
+    {#<div class="up-music">
+      <a class="fancybox" href="#inline3"><img src="/assets/img/mas.png" width="20" height="20" alt="subir musica" /></a>
+    </div>#}
+    <a href="{{ path('fos_user_profile_edit') }}">
+      {% if app.user.avatar is not empty %}
+      <img width="36" height="36" src="{{ web_path(app.user.avatar, 'reference') | apply_filter('users_thumb') }}" alt="{{ app.user }}" />
+      {% else %}
+      <img width="36" height="36" alt="{{ app.user }}" src="/assets/img/avatar_{{ app.user.gender }}.jpg" />
+      {% endif %}      
+    </a>
+    <ul>
+      <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user }}</a>
+        {#<ul>
+          <li><a href="#">navegar como productora</a></li>
+        </ul>#}    
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="menu">
+  <ul id="nav" class="dropdown dropdown-vertical dropdown-vertical-rtl">
+    <li class="dont"><a class="dont" href="javascript:void(0)"></a>
+      <ul>
+        <li><a href="{{ path('fos_user_security_logout') }}" class="close">CERRAR SESIÓN</a></li>
+      </ul>
+    </li>
+    <li><a class="settings" href="javascript:void(0)"></a>
+      <ul>
+        <li><a href="{{ path('fos_user_profile_edit') }}" class="config">CONFIGURACIÓN</a></li>
+      </ul>
+    </li>
+  {#<li><a class="atention" href="#"><img src="/assets/img/exclamacion.png" width="10" height="27" /><span class="notification">10</span></a>
+    <ul>
+      <li><a href="#" class="note">NOTIFICACIONES</a></li>
+    </ul>
+  </li>#}
+    {#<li>
+      <a class="mail" href="#"><img src="/assets/img/mail.png" width="24" height="22" /><span class="notification">5</span></a>
+      <ul>
+        <li><a href="#" class="msj">MENSAJES</a></li>
+      </ul>
+    </li>#}
+  {#<li><a class="carrito" href="#"><img src="/assets/img/carrito.png" width="27" height="24" /></a>
+    <ul>
+      <li><a href="#" class="car">CARRITO</a></li>
+    </ul>
+  </li>#}
+    </ul>
+  </div>
+{% endblock %}

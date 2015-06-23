@@ -1,0 +1,31 @@
+<div class="col-right">
+  <div class="crear">
+    <a href="{{ path('web_reviews_create') }}">AGREGAR REVIEW</a>
+  </div>
+
+  {% if user.getIsDj() %} {# Si es un usuario DJ #}
+  <div class="soundcloud_3">
+    <a class="fancybox" href="#jr_music_modal">SOUNDCLOUD</a>
+  </div>
+  {% endif %}
+    
+  {% if user.getIsVj() %} {# Si es un usuario VJ #}
+  <div class="subir">
+    <a class="fancybox" href="#productora_video">SUBIR VIDEO</a>
+  </div>
+  {% endif %}
+  
+  <!--<div class="subir">
+      <a class="fancybox" href="#inline2">AGREGAR SET</a>
+  </div>-->
+
+  {{ render_esi(controller('CoreBundle:User:relation', {'user': user })) }}
+
+  {% include 'WebBundle:Frontend/Usuario:ravers.html.twig' %}
+
+  {% include 'WebBundle:Frontend/Usuario:myevents.html.twig' %}
+
+</div>
+
+{% include 'WebBundle:Frontend/Media:modal_video.html.twig' with {'function_name': 'submit_form_video_profile', 'objectClass': 'user', 'objectId': app.user.id } %}
+{% include 'WebBundle:Frontend/Media:modal_music.html.twig' with {'function_name': 'submit_form_soundcloud_profile', 'objectClass': 'user', 'objectId': app.user.id } %}

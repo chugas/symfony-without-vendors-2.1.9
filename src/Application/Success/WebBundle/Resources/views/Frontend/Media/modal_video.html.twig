@@ -1,0 +1,11 @@
+<div id="productora_video" style="display:none;">
+  <div class="crear_videos">
+    <p class="titulo">VIDEO</p>
+    <form id="jr_form_video" action="{{ path('media_video_upload', {'context': 'eventos_video', 'providerName': 'sonata.media.provider.youtube', 'objectClass': objectClass,  'objectId': objectId }) }}" method="POST">
+      <input id="success_videos_values" type="hidden" value="" name="videos_ids" />
+      <label>Url del video</label>
+      <label><input id="success_video_form_url" type="text" name="url" value="" /></label>
+      <label class="button"><button type="button" class="btn btn-primary" onclick="return {{ function_name }}(this, event);"><i class="icon-envelope"></i>&nbsp;CREAR</button></label>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+{% block flashes %}
+{% set all = app.session.flashbag.all() %}
+{% if all | length > 0 %}
+  <section id="flashes" class="noti">
+    {%- for type, messages in all -%}
+      {%- for message in messages -%}
+        <p class="{{ type }}">{{ message | trans }}</p>
+      {%- endfor -%}
+    {%- endfor -%}
+  </section>
+  <script type="text/javascript">
+     setTimeout(function(){$('#flashes').addClass('fade')}, 3000);
+  </script>
+{% endif %}
+{% endblock %}
+
+<header>
+  <div class="center">
+    <div class="top">
+      <div class="top-nav">
+
+        <div class="player">
+          <a href="{{ radio_url() }}" target="_blank">
+            <img src="/assets/img/circle.png" />
+            <p>JUST RAVE RADIO</p>
+          </a>
+        </div>
+
+        <div class="play">
+          <a href="{{ radio_url() }}"><img src="/assets/img/play.png" width="15" height="18" alt="play" /></a>
+        </div>
+
+        <div class="player-list">
+          <p>{{ radio_description() }}</p>
+          <div class="list">
+            {#<ul id="cssdropdown">
+              <li class="headlink">
+                <a href="#"></a>
+                <ul style="display: none; z-index: 9999; position: absolute; top: 36px;">
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                  <li><a href="#">Guns N´ Roses - Live And Let Die - Destr</a></li>
+                {% if is_granted('ROLE_USER') %}
+                  <li class="up-music"><a class="fancybox" href="#jr_music_modal" data-toggle="modal">AGREGAR MÚSICA</a></li>
+                {% endif %}
+                </ul>
+              </li>
+            </ul>#}
+          </div>
+        </div>
+
+        {% block header_user %}
+          <div class="user">
+            <ul style="float: right;">
+              <li style="float:left; margin-right: 5px"><a class="fancybox" href="#jr_security_modal">ENTRAR</a></li>
+              <li style="float:left; padding-left:5px; border-left: 1px solid;"><a class="fancybox" href="#jr_security_modal">REGISTRARSE</a></li>
+            </ul>
+          </div>
+          {% include 'WebBundle:Frontend/Security:modal.html.twig' %}
+        {% endblock %}
+        
+      </div>
+
+      <div class="middle">
+        <div class="logo">
+          <img src="/assets/img/logo.png" width="470" height="69" alt="logo" />
+        </div>
+      </div>
+
+      <div class="down-nav">
+        <p><span>{{ promo_key() }} :</span> {{ promo_description() }}</p>
+        {#<form>
+          <input />
+          <button>BUSCAR</button>
+        </form>#}
+      </div>
+    </div>
+
+    <menu>
+      <nav>
+        <div class="date">
+          <div class="up">{{ 'now' | date('M') }}</div>
+          <div class="down">{{ 'now' | date('d') }}</div>
+        </div>
+        <div class="fiestas">
+          <a href="{{ path('web_eventos') }}">FIESTAS</a>
+        </div>
+        <div class="fiestas">
+          <a href="{{ path('web_reviews') }}">REVIEWS</a>
+        </div>
+        <div class="usuarios">
+          <a href="{{ path('web_usuarios') }}">USUARIOS</a>
+        </div>
+        <div class="foros">
+          <a href="{{ path('ccdn_forum_user_category_index', { 'forumName': 'default' }) }}">FOROS</a>
+        </div>
+        <div class="que-pasa">
+          <a href="{{ path('web_newsfeed') }}">LO QUE PASA</a>
+        </div>
+      </nav>
+    </menu>
+
+  </div>
+</header>

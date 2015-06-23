@@ -1,0 +1,14 @@
+{% spaceless %}
+{% for youtube in collection %}
+<div class="cloud ui-widget-content draggable" data-id="{{ youtube.id }}">
+  <a href="//www.youtube.com/embed/{{ youtube.providerreference }}?autoplay=1" class="fancybox fancybox.iframe">
+    <img src="{{ youtube.getProviderMetadata().thumbnail_url }}" width="72" height="72" />
+  </a>
+  <div class="info">
+    <h6 title="{{ youtube.name }}">{{ youtube.name | truncate(35) }}</h6>
+    <p title="{{ youtube.getProviderMetadata().author_name }}">{{ youtube.getProviderMetadata().author_name | truncate(25) }}</p>
+  </div>
+  <a href="#">+</a>
+</div>
+{% endfor %}
+{% endspaceless %}

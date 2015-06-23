@@ -1,0 +1,171 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% form_theme form 'WebBundle:Frontend/Evento:fields.html.twig' %}
+
+{% block body %}
+
+<div class="content center">
+  <form id="evento_create_form" action="{{ path('web_eventos_create') }}" method="POST" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+      
+    <div class="header_fiestas">
+      <div class="fiestas">
+        <p><a href="javascript:void(0)">CREAR FIESTAS</a></p>
+        <a href="javascript:void(0)" class="publicar" onclick="$('#evento_create_form').submit();">PUBLICAR</a>
+      </div>
+    </div>
+
+    <div class="col-left">
+      <div class="datos">
+        <div class="nombre {% if form.name.vars.errors|length > 0 %}success-field-error{% endif %}">
+          {{ form_widget(form.name, {'attr': { 'placeholder': 'NOMBRE' } }) }}
+        </div>
+        {{ form_errors(form.name) }}
+
+        <div class="dia">
+          {{ form_widget(form.timeAt.date.day, {'attr': { 'style': 'width: 64px', 'placeholder': 'FECHA', 'class': 'selector' } }) }}
+        </div>
+        <div class="mes">
+          {{ form_widget(form.timeAt.date.month, {'attr': { 'style': 'width: 64px', 'placeholder': 'MES', 'class': 'selector' } }) }}
+        </div>
+        <div class="anio">
+          {{ form_widget(form.timeAt.date.year, {'attr': { 'style': 'width: 64px', 'placeholder': 'AÑO', 'class': 'selector' } }) }}
+        </div>
+        <div class="hora">
+          {{ form_widget(form.timeAt.time.hour, {'attr': { 'style': 'width: 100px', 'placeholder': 'HORA', 'class': 'selector' } }) }}
+        </div>    
+        <div class="hora">
+          {{ form_widget(form.timeAt.time.minute, {'attr': { 'style': 'width: 100px', 'placeholder': 'MIN', 'class': 'selector' } }) }}
+        </div>
+        <div style="clear:both"></div>
+        <div class="info {% if form.description.vars.errors|length > 0 %}success-field-error{% endif %}">
+          {{ form_widget(form.description, {'attr': { 'placeholder': 'INFORMACIÓN DEL EVENTO' } }) }}
+        </div>
+        {{ form_errors(form.description) }}
+        
+        <div class="lugar {% if form.address.vars.errors|length > 0 %}success-field-error{% endif %}">
+          {{ form_widget(form.address, {'attr': { 'placeholder': 'LUGAR' } }) }}
+        </div>
+        {{ form_errors(form.address) }}
+
+        <div style="clear:both"></div>
+
+        <div class="direccion">
+          <div class="titulo">
+            <p>DÓNDE ES?</p>
+          </div>
+          <div class="mapa">
+            {{ form_widget(form.latlng) }}
+          </div>
+        </div>
+      </div>
+      <div class="entradas">
+        <div class="precio_entrada">
+          <div class="titulo">
+            <p>PRECIO ENTRADA</p>
+          </div>
+        </div>
+        <div class="precio {% if form.price.vars.errors|length > 0 %}success-field-error{% endif %}">
+          {{ form_widget(form.price, {'attr': { 'placeholder': '$$$$$$' } }) }}
+        </div>
+        <div class="entrada_anticipada">
+          <div class="titulo">
+            <p>ANTICIPADA</p>
+          </div>
+        </div>
+
+        <div class="dia">
+          {{ form_widget(form.validateAtAnticipada.day, {'attr': { 'style': 'width: 64px', 'placeholder': 'DIA', 'class': 'selector' } }) }}
+        </div>
+        <div class="mes">
+          {{ form_widget(form.validateAtAnticipada.month, {'attr': { 'style': 'width: 64px', 'placeholder': 'MES', 'class': 'selector' } }) }}
+        </div>
+        <div class="anio">
+          {{ form_widget(form.validateAtAnticipada.year, {'attr': { 'style': 'width: 64px', 'placeholder': 'AÑO', 'class': 'selector' } }) }}
+        </div>
+        <div class="precio {% if form.priceAnticipada.vars.errors|length > 0 %}success-field-error{% endif %}">
+          {{ form_widget(form.priceAnticipada, {'attr': { 'autocomplete': 'off', 'placeholder': '$$$$$$' } }) }}
+        </div>
+        <div style="clear:both"></div>
+        {#<div class="listado">
+          <a class="rojo" href="#">Agregar Fecha</a>
+        </div>
+        <div style="clear:both"></div>#}
+
+        <div class="info {% if form.descriptionAnticipada.vars.errors|length > 0 %}success-field-error{% endif %}">
+          {{ form_widget(form.descriptionAnticipada, {'attr': { 'placeholder': 'DONDE RETIRAR ANTICIPADAS' } }) }}
+        </div>
+        
+        <div class="vender">
+          <label>
+            {{ form_widget(form.sellJustrave, {'attr': { 'autocomplete': 'off' } }) }}
+          </label>
+        </div>
+        
+        <div class="legal">
+          <p>{{ 'eventos.create.terminos_y_condiciones' | trans }}</p>
+        </div>
+      </div>
+        
+      <div class="productora productora3">
+        <div class="productora_v2">
+          <div class="titulo">
+            <p>PRODUCTORA</p>
+          </div>
+        </div>
+        <div class="nombre">
+          {{ form_widget(form.productora, {'attr': { 'autocomplete': 'off', 'style': 'width:208px;' } }) }}
+        </div>
+        <div class="listado">
+          <a href="#productora_create" class="fancybox" >Crear Productora</a>
+        </div>
+          
+        <div class="line-up">LINE UP</div>
+        <div id="jr_evento_lineup">
+          <div class="nombre">
+            <input placeholder="NOMBRE" />
+          </div>
+        </div>
+        <div class="listado">
+          <a href="javascript:void(0)" onclick="add_option_lineup();">Agregar otro</a>
+        </div>
+        <div class="flyer">
+          <span class="btn btn-success fileinput-button">
+            <span>FLYER</span>
+            {{ form_widget(form.file, {'attr': { 'class': 'custom-file-input' } }) }}
+          </span>
+        </div>
+      </div>
+    </div>
+      
+    <div class="col-right">
+      <div class="imagen">
+        <a class="fancybox" href="#productora_image">IMAGEN</a>
+        <div id="success_medias_values" style="display:none;" data-prototype="{{ form_widget(form.images.vars.prototype.media)|e }}"></div>
+      </div>
+      <div class="video">
+        <a class="fancybox" href="#productora_video">VIDEO</a>
+        <div id="success_videos_values" style="display:none;" data-prototype="{{ form_widget(form.videos.vars.prototype.media)|e }}"></div>        
+      </div>
+    </div>
+
+    <div style="clear:both"></div>
+  </form>
+</div>
+
+{% include 'WebBundle:Frontend/Productora:modal.html.twig' with {'form': formProductora } %}
+{% include 'WebBundle:Frontend/Media:modal_image.html.twig' %}
+{% include 'WebBundle:Frontend/Media:modal_video.html.twig'with {'function_name': 'submit_form_video', 'objectClass': null, 'objectId': null } %}
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {% include 'WebBundle:Frontend/Media:javascripts.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  {% include 'WebBundle:Frontend/Media:stylesheets.html.twig' %}
+{% endblock %}

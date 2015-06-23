@@ -1,0 +1,27 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}
+<div class="header2">
+  <div class="fiestas">
+    <p><a href="javascript:void(0)">{{ review.title }}</a></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="col-left">
+  <div class="text-review">
+    <p>{{ review.description | bb_parse | raw | nl2br}}</p>
+  </div>
+  <div style="clear:both"></div>
+
+  {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : 'review_' ~ review.id } %}
+</div>
+{% endblock %}
+
+{% block content_right %}
+  <div class="col-right">
+    {{ render_esi(controller('CoreBundle:Review:right')) }}
+    {{ eventos_pasados(10) }}
+  </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+parameters:
+
+services:
+    success.form.type.productora:
+        class: %success.form.type.productora.class%
+        tags:
+          - { name: form.type, alias: success_productora_form_type }
+        arguments:
+            - %success.model.productora.class%

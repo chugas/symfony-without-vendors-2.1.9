@@ -1,0 +1,26 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}{% endblock %}
+
+{% block content %}
+
+<div class="col-left">
+  <div id="list_eventos">
+    {% include 'WebBundle:Frontend/Evento/response:list.html.twig' with { 'eventos': eventos } %}
+  </div>
+    
+  {% block pager %}
+    {% if eventos | length == max_per_page %}
+      {% include 'WebBundle:Frontend/Helper:pager.html.twig' with { 'container': 'list_eventos', 'link': path('web_eventos', {'page': 2 }) } %}
+    {% endif %}
+  {% endblock %}    
+</div>
+
+{% endblock %}
+
+{% block content_right %}
+<div class="col-right">
+  {{ render_esi(controller('CoreBundle:Evento:right')) }}
+  {{ eventos_pasados(10) }}
+</div>
+{% endblock %}

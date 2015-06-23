@@ -1,0 +1,16 @@
+media_upload:
+    pattern:  /upload/{context}/{providerName}/{objectClass}/{objectId}
+    defaults: { _controller: CoreBundle:Media:upload, objectClass: null,  objectId: null }
+
+media_video_upload:
+    pattern:  /upload-video/{context}/{providerName}/{objectClass}/{objectId}
+    defaults: { _controller: CoreBundle:Media:uploadVideo, objectClass: null,  objectId: null }
+    
+media_object_upload:
+    pattern:  /object/upload/
+    defaults: { _controller: CoreBundle:Media:upload }
+
+media_avatar_upload:
+    pattern:  /upload-avatar/{providerName}/
+    defaults: { _controller: CoreBundle:Media:updateAvatar }
+

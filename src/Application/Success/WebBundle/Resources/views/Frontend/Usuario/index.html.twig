@@ -1,0 +1,38 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}
+<div class="header-orange">
+  <div class="fiestas">
+    <p>USUARIOS</p>
+  </div>
+  <ul id="cssdropdown2" class="MenuBarHorizontal">
+    <li class="headlink2">
+      <a id="u-o-b" class="MenuBarItemSubmenu" href="javascript:void(0)">Ordenar por</a>
+      <ul>
+        <li><a href="{{ path('web_usuarios', {'o': 'createdAt' }) }}">FECHA DE REGISTRO</a></li>
+        <li><a href="{{ path('web_usuarios', {'o': 'firstname' }) }}">ALFABETICAMENTE</a></li>
+        {#<li><a href="#">TEMAS SUBIDOS</a></li>#}
+      </ul>
+    </li>
+  </ul>
+  <!--<div class="number">
+    <p>600</p>
+  </div>-->
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="col_left" style="margin-left: 0px;">
+
+  <ul id="list_usuario" class="list_usuario">
+    {% include 'WebBundle:Frontend/Usuario/response:list.html.twig' with {'users': users } %}
+  </ul>
+
+  {% block pager %}
+    {% if users | length == max_per_page %}
+      {% include 'WebBundle:Frontend/Helper:pager.html.twig' with { 'container': 'list_usuario', 'link': path('web_usuarios', {'page': 2 }) } %}
+    {% endif %}
+  {% endblock %}
+
+</div>
+{% endblock %}

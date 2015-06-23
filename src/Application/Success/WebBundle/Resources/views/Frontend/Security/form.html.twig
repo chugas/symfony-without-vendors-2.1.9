@@ -1,0 +1,12 @@
+<form action="{{ path('fos_user_security_check') }}" method="POST">
+  <div class="col-left">
+    <label>E-MAIL</label>
+    <label><input type="text" value="" name="_username" /></label>
+    <label>CONTRASEÑA</label>
+    <label><input type="password" value="" name="_password" /></label>
+    <label><a href="{{ path('fos_user_resetting_request') }}">No se acuerda su contraseña?</a></label>
+    <label class="button"><button type="submit">ENTRAR</button></label>
+    <label class="line"></label>
+    <label>Si tenías usuario en la versión anterior <br/>del sitio podés utitlizar el mismo<br/> e-mail y contraseña. Si no recordás el <br/>e-mail o no tenés acceso comunicarse<br/> con el administrador a <br/><a href="mailto:alegrasso@justrave.com">alegrasso@justrave.com</a></label>
+  </div>
+</form>

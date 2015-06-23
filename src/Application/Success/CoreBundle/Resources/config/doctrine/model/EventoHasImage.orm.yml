@@ -1,0 +1,30 @@
+Application\Success\CoreBundle\Entity\EventoHasImage:
+    type: entity
+    table: success_evento_image
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        position:
+            type: smallint
+            nullable: true
+        avatar:
+            type: boolean
+            nullable: true
+    manyToOne:
+        media:
+            targetEntity: Application\Success\MediaBundle\Entity\Media
+            cascade: [all]
+            joinColumn:
+                name: media_id
+                referencedColumnName: id
+                onDelete: CASCADE
+        evento:
+            targetEntity: Application\Success\CoreBundle\Entity\Evento
+            inversedBy: images
+            joinColumn:
+                name: evento_id
+                referencedColumnName: id
+                onDelete: CASCADE
+

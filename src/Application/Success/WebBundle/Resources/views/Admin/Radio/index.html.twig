@@ -1,0 +1,46 @@
+{#http://blog.eike.se/2014/03/custom-page-controller-in-sonata-admin.html#}
+{% extends 'SonataAdminBundle::layout.html.twig' %}
+
+{% block sonata_breadcrumb %}
+<ol class="nav navbar-top-links breadcrumb">
+  <li>
+    <a href="{{ path('sonata_admin_dashboard') }}">Dashboard</a>
+  </li>
+  <li class="active"><span>Radio</span></li>
+</ol>
+{% endblock sonata_breadcrumb %}
+
+{% block form %}
+
+<form action="{{ path('admin_radio') }}" method="POST">
+  <div class="row">
+    {% for key, block in blocks %}
+    <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-header">
+          <h4 class="box-title">{{ key | upper }}</h4>
+        </div>
+        <div class="box-body">
+          <div class="sonata-ba-collapsed-fields">
+            {% for param, value in block %}
+            <div class="form-group">
+              <label class="control-label required">{{ param }}</label>
+              <div class="sonata-ba-field sonata-ba-field-standard-natural  ">
+                <input type="text" value="{{ value }}" class="form-control" required="required" name="{{ 'config['~key~']'~'['~param~']' }}" />
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}    
+  </div>
+  <div class="well well-small form-actions">
+    <button type="submit" class="btn btn-success" name="btn_create"><i class="fa fa-plus-circle"></i> {{ 'btn_create'|trans({}, 'SonataAdminBundle') }}</button>
+  </div>    
+</form>
+{% endblock %}
+
+
+

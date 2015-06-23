@@ -1,0 +1,146 @@
+ul.MenuBarHorizontal
+{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 100%;
+  cursor: default;
+  width: auto;
+  font-family: 'NaivBold';
+  font-size: 13px;
+  font-weight: normal;
+}
+ul.MenuBarActive
+{
+  z-index: 1000;
+}
+ul.MenuBarHorizontal li
+{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 100%;
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+  width:185px;
+  float: left;
+}
+ul.MenuBarHorizontal ul {
+  cursor: default;
+  font-family: 'NaivBold';
+  font-size: 13px;
+  font-weight: normal;
+  left: 0 !important;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 36px !important;
+  z-index: 1020;
+}
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible
+{
+  left: auto;
+}
+ul.MenuBarHorizontal ul ul
+{
+  position: absolute;
+  margin: -5% 0 0 95%;
+}
+ul.MenuBarHorizontal ul.MenuBarSubmenuVisible ul.MenuBarSubmenuVisible
+{
+  left: auto;
+  top: 0;
+}
+ul.MenuBarHorizontal a {
+  background-color: #FF5800;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  padding: 9px 18px;
+  text-decoration: none;
+}
+ul.MenuBarHorizontal a:hover, ul.MenuBarHorizontal a:focus
+{
+  color: #FFF;
+  text-decoration:underline;
+}
+ul.MenuBarHorizontal a.MenuBarItemHover, ul.MenuBarHorizontal a.MenuBarItemSubmenuHover, ul.MenuBarHorizontal a.MenuBarSubmenuVisible
+{
+  color: #FFF;
+  text-decoration:underline;
+}
+ul.MenuBarHorizontal a.MenuBarItemSubmenu
+{
+  background-image: url(/assets/css/SpryAssets/SpryMenuBarDown.gif);
+  background-repeat: no-repeat;
+  background-position: 90% 50%;;
+}
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenu
+{
+  background-image: url(/assets/css/SpryAssets/SpryMenuBarRight.gif);
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+}
+ul.MenuBarHorizontal a.MenuBarItemSubmenuHover
+{
+  background-image: url(/assets/css/SpryAssets/SpryMenuBarDownHover.gif);
+  background-repeat: no-repeat;
+  background-position: 90% 50%;;
+}
+ul.MenuBarHorizontal ul a.MenuBarItemSubmenuHover
+{
+  background-image: url(/assets/css/SpryAssets/SpryMenuBarRightHover.gif);
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+}
+ul.MenuBarHorizontal iframe
+{
+  position: absolute;
+  z-index: 1010;
+  filter:alpha(opacity:0.1);
+}
+@media screen, projection
+{
+  ul.MenuBarHorizontal li.MenuBarItemIE
+  {
+    display: inline;
+    float: left;
+    background: #FFF;
+  }
+}
+
+
+
+
+
+
+/*lista de canciones*/
+/* General */
+#cssdropdown2, #cssdropdown2 ul { 
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+#cssdropdown2, #cssdropdown2 ul { 
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+/* Child lists and links */
+#cssdropdown2 li.headlink2 ul { 
+  display: none; 
+  text-align: left; 
+}
+#cssdropdown2 li.headlink2:hover ul { 
+  display: block; 
+}
+/* Pretty styling */
+#cssdropdown2 a {
+  color: white; 
+} 
+#cssdropdown2 ul li a:hover { 
+  text-decoration: none; 
+}
+/*lista de canciones*/

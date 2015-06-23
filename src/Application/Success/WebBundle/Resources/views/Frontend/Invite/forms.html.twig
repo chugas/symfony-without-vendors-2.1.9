@@ -1,0 +1,39 @@
+{% if is_granted('ROLE_USER') %}
+    <div  class="invita-a-tus-amigos">
+        <p class="titulo">INVITÁ A TUS AMIGOS</p>
+        <div id="accordion">
+            <h3 class="facebook">POR EMAIL</h3>
+            <div>
+                <form action="{{ path('success_invite_form') }}" method="POST">
+                    <label>{{ 'Ingresa los emails separados por coma ej: alegrasso@gmail.com, german@justrave.com, lula13@hotmail.com' | trans }}</label>
+                    <label><textarea name="success_invite[emails]"></textarea></label>
+                    <label><button type="submit" data-load="true"><i class="icon-save"></i> Enviar</button></label>
+                </form>
+            </div>
+
+            <h3 class="msn">IMPORTANDO CONTACTOS DE GMAIL</h3>
+            <div style="min-height: 150px;">
+                <a href="{{ google_login_url() }}">
+                    <img src="/assets/img/invite/Gmail.png" />    
+                </a>
+            </div>
+
+            <h3 class="email">POR REDES SOCIALES</h3>
+            <div style="min-height: 150px;">
+                <a href="#" onclick="FacebookInviteFriends();">
+                    <img src="/assets/img/invite/Facebook.png" />
+                </a>
+
+                <a class="popup" href="http://twitter.com/share?url={{ referer_url(app.user) | url_encode }}&text=Los invito a participar de Justrave, es una plataforma web que permite estar al dia con la musica electronica.{#{ 'user.register.twitter-message' | trans | url_encode}#}&lang=es" target="_blank"><img src="/assets/img/invite/Twitter.png" /></a>
+            </div>
+
+            <h3 class="gmail">COMPARTI TU ENLACE</h3>
+            <div style="min-height: 150px;">
+                <fieldset>
+                    <legend>{{ 'user.register.Compartir link' | trans }}</legend>
+                    <input type="text" readonly="true" value="{{ referer_url(app.user) }}" style="width: 95%" />
+                </fieldset>
+            </div>    
+        </div>
+    </div>
+{% endif %}

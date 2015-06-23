@@ -1,0 +1,46 @@
+{# An user ? #}
+{% block _application_success_userbundle_entity_user_default_component %}
+  {% set user = value %}
+  <a href="{{ path('fos_user_profile_show') }}" data-tip="bottom" title="{{ user }}">
+    {% if user.avatar is not empty %}
+      <img src="{{ user.getWebPath() | apply_filter('users_thumb') }}" alt="{{ user }}" width="29" height="29" />
+    {% else %}
+      <img width="29" height="29" alt="{{ user }}" src="/images/avatar_{{ user.gender|default('m') }}.jpg">
+    {% endif %}
+  </a>
+{% endblock %}
+
+{% block _application_success_portalbundle_entity_news_default_component %}
+{% set noticia = value %}
+{% set media = noticia.getAvatar() %}
+
+{% if media is not null %}
+  {% set avatar = web_path(media, 'reference') %}
+  <a href="{{ path('portal_noticia', {'id' : noticia.id, 'slug' : noticia.getSlug() }) }}">
+    <img src="{{ avatar | apply_filter('news_thumb') }}" title="" />
+  </a>
+{% else %}
+  <a href="{{ path('portal_noticia', {'id' : noticia.id, 'slug' : noticia.getSlug() }) }}">
+    <img src="/images/portada.jpg" title="" width="68" height="68" />
+  </a>
+{% endif %}
+
+<a href="{{ path('portal_noticia', {'id' : noticia.id, 'slug' : noticia.getSlug() }) }}">
+  {{ noticia.title |truncate_words(8) }}
+</a>
+{% endblock %}
+
+{% block _application_success_companybundle_entity_product_default_component %}
+{% set product = value %}
+product {{ product }}
+{% endblock %}
+
+{% block _application_success_companybundle_entity_service_default_component %}
+{% set product = value %}
+service {{ product }}
+{% endblock %}
+
+{% block _application_success_portalbundle_entity_comment_default_component %}
+{% set comment = value %}
+{{ comment.getBody() }}
+{% endblock %}

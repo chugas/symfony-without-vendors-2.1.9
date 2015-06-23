@@ -1,0 +1,15 @@
+web_eventos:
+    pattern:  /
+    defaults: { _controller: CoreBundle:Evento:index }
+
+web_eventos_create:
+    pattern:  /crear/
+    defaults: { _controller: CoreBundle:Evento:create }
+
+web_eventos_update:
+    pattern:  /{id}/modificar/
+    defaults: { _controller: CoreBundle:Evento:edit }
+
+web_eventos_show:
+    pattern:  /{id}/{slug}/
+    defaults: { _controller: CoreBundle:Evento:show }

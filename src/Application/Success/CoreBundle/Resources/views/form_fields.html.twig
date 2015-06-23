@@ -1,0 +1,18 @@
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+        <div class="success-field-error-messages">
+          <ul>
+              {% for error in errors %}
+                  <li class="">{{ error.message }}</li>
+              {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block form_widget_simple %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %} />      
+{% endblock form_widget_simple %}

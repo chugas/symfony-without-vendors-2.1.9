@@ -1,0 +1,48 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+    <div class="col-left">
+        {% for evento in eventos %}
+            {% if loop.index % 2 == 0 %}
+                {% include 'WebBundle:Frontend/Evento:evento.html.twig' with { 'evento': evento } %}
+            {% else %}
+                {% include 'WebBundle:Frontend/Evento:evento_horizontal.html.twig' with { 'evento': evento } %}
+            {% endif %}
+        {% endfor %}
+    </div>        
+{% endblock %}
+
+{% block content_right %}
+    <div class="col-right">
+        {{ render_esi(controller('CoreBundle:Evento:right')) }}
+        {{ eventos_pasados(10) }}
+    </div>
+    {% if contacts is defined %}
+        <a id="t-f-i" class="fancybox" href="#successInvite" style="display:none">contactos</a>
+        {% include 'SuccessInviteBundle:Invite:list.html.twig' with { 'contacts': contacts } %}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        {% if contacts is defined %}
+            $(document).ready(function () {
+                $('#t-f-i').trigger('click');
+                $("#accordion").accordion();
+            });
+            $('.checkall').on('click', function () {
+                $(this).closest('fieldset').find(':checkbox').prop('checked', this.checked);
+            });
+        {% endif %}
+
+            $(document).ready(function () {
+                $("#accordion").accordion();
+            });
+
+            function FacebookInviteFriends() {
+                FB.ui({method: 'apprequests', message: 'Te invito a formar parte de la comunidad de Justrave'});
+            }
+    </script>
+{% endblock %}

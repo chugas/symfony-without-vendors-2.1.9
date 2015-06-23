@@ -1,0 +1,9 @@
+{% if( is_granted('ROLE_USER') and app.user.id != user.id ) %}
+  {% if not ( app.user | relation_exists(user.id)  ) %}
+    <div class="seguir">
+      <a href="{{ path('user_relation_add', { 'id': user.id }) }}" class="btn btn-saber" data-relation="add" data-load="true">
+        <i class="fa fa-user"></i>&nbsp;SEGUIR RAVER
+      </a>
+    </div>
+  {% endif %}
+{% endif %}

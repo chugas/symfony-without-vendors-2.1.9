@@ -1,0 +1,39 @@
+homepage:
+    path:  /
+    defaults: { _controller: CoreBundle:Default:index }
+    
+evento:
+    resource: "@WebBundle/Resources/config/routing/evento.yml"
+    prefix:   /eventos
+    
+productora:
+    resource: "@WebBundle/Resources/config/routing/productora.yml"
+    prefix:   /productoras
+
+media:
+    resource: "@WebBundle/Resources/config/routing/media.yml"
+    prefix:   /medias
+
+reviews:
+    resource: "@WebBundle/Resources/config/routing/reviews.yml"
+    prefix:   /reviews
+
+usuario:
+    resource: "@WebBundle/Resources/config/routing/usuario.yml"
+    prefix:   /
+
+admin_radio:
+    resource: "@WebBundle/Resources/config/routing/admin/radio.yml"
+    prefix:   /admin
+
+core_contacto:
+    path:  /contacto/
+    defaults: { _controller: CoreBundle:Default:contacto }
+
+core_contacto_submit:
+    path:  /contacto/submit/
+    defaults: { _controller: CoreBundle:Default:submit }
+
+core_page:
+    path:  /{page}/
+    defaults: { _controller: CoreBundle:Default:page }

@@ -1,0 +1,20 @@
+Application\Success\CoreBundle\Entity\ActionComponent:
+    type: entity
+    table: success_timeline_action_component
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    manyToOne:
+        action:
+            targetEntity: Application\Success\CoreBundle\Entity\Action
+            joinColumn:
+                name: action_id
+                referencedColumnName: id
+                onDelete: CASCADE
+        component:
+            targetEntity: Application\Success\CoreBundle\Entity\Component
+            joinColumn:
+                name: component_id
+                referencedColumnName: id
+                onDelete: CASCADE

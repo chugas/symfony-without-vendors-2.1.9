@@ -1,0 +1,53 @@
+parameters:
+
+    # Service Parameters defined in app/config.
+
+services:
+
+    #### EVENTOS ####
+    success.entity_manager.evento:
+        alias: doctrine.orm.entity_manager
+
+    success.repository.evento.metadata:
+        factory_method: getClassMetadata
+        factory_service: success.entity_manager.evento
+        class: Doctrine\ORM\Mapping\ClassMetadata
+        arguments:
+            - %success.model.evento.class%
+            
+    success.repository.evento:
+        class: %success.repository.evento.class%
+        arguments:
+            - '@success.entity_manager.evento'
+            - '@success.repository.evento.metadata'
+
+    #### PRODUCTORA #####
+    success.entity_manager.productora:
+        alias: doctrine.orm.entity_manager
+
+    success.repository.productora.metadata:
+        factory_method: getClassMetadata
+        factory_service: success.entity_manager.productora
+        class: Doctrine\ORM\Mapping\ClassMetadata
+        arguments:
+            - %success.model.productora.class%
+            
+    success.repository.productora:
+        class: %success.repository.productora.class%
+        arguments:
+            - '@success.entity_manager.productora'
+            - '@success.repository.productora.metadata'
+
+    #### REVIEWS #####
+    success.repository.reviews.metadata:
+        factory_method: getClassMetadata
+        factory_service: doctrine.orm.entity_manager
+        class: Doctrine\ORM\Mapping\ClassMetadata
+        arguments:
+            - Application\Success\CoreBundle\Entity\Review
+            
+    success.repository.reviews:
+        class: Application\Success\CoreBundle\Repository\Doctrine\ORM\ReviewRepository
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@success.repository.reviews.metadata'

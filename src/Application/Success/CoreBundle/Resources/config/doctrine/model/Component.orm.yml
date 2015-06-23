@@ -1,0 +1,7 @@
+Application\Success\CoreBundle\Entity\Component:
+    type: entity
+    table: success_timeline_component
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }

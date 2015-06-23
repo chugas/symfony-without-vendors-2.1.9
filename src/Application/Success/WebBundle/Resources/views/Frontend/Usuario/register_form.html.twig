@@ -1,0 +1,25 @@
+<form action="{{ path('fos_user_registration_register') }}" method="post" class="form-horizontal" novalidate>
+  {{ form_errors(form) }}
+  {{ form_widget(form._token) }}
+  <div class="col-right">
+    <label class="half-form">NOMBRE
+      {{ form_widget(form.firstname) }}
+    </label>
+    <label class="half-form">APELLIDO
+      {{ form_widget(form.lastname) }}
+    </label>    
+    <label>E-MAIL</label>
+    <label>{{ form_widget(form.email) }}</label>
+    
+    <label>CONTRASEÑA</label>
+    <label>{{ form_widget(form.plainPassword.first) }}</label>
+
+    <label>REPETIR CONTRASEÑA</label>
+    <label>{{ form_widget(form.plainPassword.second) }}</label>
+
+    <label class="button">
+      <button type="submit">REGISTRATE</button>&nbsp;
+      {{ render(url('hwi_oauth_connect')) }}
+    </label>
+  </div>
+</form>

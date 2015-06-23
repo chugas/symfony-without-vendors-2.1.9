@@ -1,0 +1,14 @@
+{% spaceless %}
+{% for song in collection %}
+<div class="cloud ui-widget-content draggable" data-id="{{ song.id }}">
+  <a href="{{ song.getProviderMetadata().html | iframe_src }}" class="fancybox fancybox.iframe">
+    <img src="{{ song.getProviderMetadata().thumbnail_url }}" width="72" height="72" />
+  </a>
+  <div class="info">
+    <h6 title="{{ song.name }}">{{ song.name | truncate(30) }}</h6>
+    <p title="{{ song.getProviderMetadata().author_name }}">{{ song.getProviderMetadata().author_name | truncate(20) }}</p>
+  </div>
+  <a href="#">+</a>
+</div>
+{% endfor %}
+{% endspaceless %}

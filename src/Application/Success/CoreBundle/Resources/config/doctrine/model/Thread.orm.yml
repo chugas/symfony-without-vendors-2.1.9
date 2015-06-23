@@ -1,0 +1,7 @@
+Application\Success\CoreBundle\Entity\Thread:
+    type: entity
+    changeTrackingPolicy : DEFERRED_EXPLICIT
+    table: success_thread
+    id:
+        id:
+            type: string

@@ -1,0 +1,30 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}
+<div class="header_form">
+  <div class="fiestas">
+    <p><a href="javascript:void(0)">CONTACTO</a></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="col-left">
+  <div class="login_registro">
+    <form action="{{ path('core_contacto_submit') }}" method="POST">
+      {{ form_widget(form._token) }}  
+      <div class="col-left">
+        <label>NOMBRE</label>
+        <label><input type="text" class=" form-control" required="required" name="contact[name]" id="contact_name" value="{{ form.name.vars.value }}" /></label>
+        <label>E-MAIL</label>
+        <label><input type="text" class=" form-control" required="required" name="contact[email]" id="contact_email" value="{{ form.email.vars.value }}" /></label>
+        <label>ASUNTO</label>
+        <label><input type="text" class=" form-control" required="required" name="contact[subject]" id="contact_subject" value="{{ form.subject.vars.value }}" /></label>
+        <label>COMENTARIO</label>
+        <label><textarea class=" form-control" required="required" name="contact[body]" id="contact_body">{{ form.body.vars.value }}</textarea></label>
+        <label class="button"><button type="submit">ENVIAR</button></label>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}
+<div class="header2">
+  <div class="fiestas">
+    <p><a href="javascript:void(0)">REVIEWS</a></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="col-left">
+
+  <div id="list_reviews">
+    {% include 'WebBundle:Frontend/Review/response:list.html.twig' with {'reviews': reviews } %}
+  </div>
+  
+  {% block pager %}
+    {% if reviews | length == max_per_page %}
+      {% include 'WebBundle:Frontend/Helper:pager.html.twig' with { 'container': 'list_reviews', 'link': path('web_reviews', {'page': 2 }) } %}
+    {% endif %}
+  {% endblock %}
+</div>
+{% endblock %}
+
+{% block content_right %}
+  <div class="col-right">
+    {{ render_esi(controller('CoreBundle:Review:right')) }}
+    {{ eventos_pasados(10) }}
+  </div>
+{% endblock %}

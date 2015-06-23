@@ -1,0 +1,21 @@
+{% for user in users %}
+<li>
+  <div class="usuario">
+    <div class="usr">
+      <a href="{{ path('web_usuario', {'username': user.username}) }}">
+        {% if user.avatar is not null %}
+        <img width="72" height="72" src="{{ web_basic_path(user.avatar.id, user.avatar.providerReference, user.avatar.context) | apply_filter('users_thumb') }}" alt="{{ user.firstname~' '~user.lastname }}" />
+        {% else %}
+        <img width="72" height="72" alt="{{ user.firstname~' '~user.lastname }}" src="/assets/img/avatar_{{ user.gender }}.jpg" />
+        {% endif %}
+      </a>
+    </div>
+    <div class="info">
+      <p class="nombre">{{ user.firstname~' '~user.lastname | upper }}</p>
+      <p class="description">{{ (user.gender == 'm' ? 'Hombre' : 'Mujer') }} {{ (user.dateOfBirth is not null ? 'de '~user.dateOfBirth | age~' años' : '') }}</p>
+      <p class="url">{{ user.email }}</p>
+      <a href="{{ path('web_usuario', {'username': user.username}) }}">+</a>
+    </div>
+  </div>
+</li>
+{% endfor %}

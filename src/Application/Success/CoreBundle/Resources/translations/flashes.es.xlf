@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source>contact.submit.failure</source>
+        <target>Ha ocurrido un error y no se ha realizado el envio. Revisa los campos ingresados e intenta nuevamente!</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>contact.submit.success</source>
+        <target>Se ha enviado el mensaje correctamente.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

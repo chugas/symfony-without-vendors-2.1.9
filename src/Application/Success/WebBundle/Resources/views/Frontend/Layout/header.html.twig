@@ -1,0 +1,5 @@
+{% if is_granted('ROLE_USER') %}
+  {% include 'WebBundle:Frontend/Layout:header_in.html.twig' %}
+{% else %}
+  {% include 'WebBundle:Frontend/Layout:header_out.html.twig' %}
+{% endif %}

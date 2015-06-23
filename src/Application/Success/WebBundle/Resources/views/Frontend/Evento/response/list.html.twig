@@ -1,0 +1,7 @@
+{% for evento in eventos %}
+  {% if loop.index % 2 == 0 %}
+    {% include 'WebBundle:Frontend/Evento:evento.html.twig' with { 'evento': evento } %}
+  {% else %}
+    {% include 'WebBundle:Frontend/Evento:evento_horizontal.html.twig' with { 'evento': evento } %}
+  {% endif %}
+{% endfor %}

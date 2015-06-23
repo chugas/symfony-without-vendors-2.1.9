@@ -1,0 +1,13 @@
+<div class="fiestas-pasadas">
+  <div class="head">
+    <a href="{{ path('web_eventos') }}">FIESTAS PASADAS</a>
+  </div>
+
+  {% for evento in eventos %}
+    {% include 'WebBundle:Frontend/Evento:evento_pasado.html.twig' with { 'evento' : evento } %}
+  {% endfor %}
+    
+  <div class="more">
+    <a href="{{ path('web_eventos') }}">VER MAS</a>
+  </div>
+</div>

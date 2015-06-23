@@ -1,0 +1,19 @@
+{% if eventos | length > 0 %}
+<div class="eventos">
+  <div class="titulo">
+    <p>EVENTOS: <span title="{{ productora }}">{{ productora | truncate(8) | upper }}</span></p>
+  </div>
+
+  {% for evento in eventos %}
+    {% include 'WebBundle:Frontend/Evento:evento_pasado_key.html.twig' with { 'evento' : evento } %}
+  {% endfor %}
+    
+  <div style="clear: both"></div>
+
+  <div class="more">
+    <a href="{{ path('web_eventos') }}">VER MAS</a>
+  </div>
+</div>
+{% else %}
+  {{ eventos_pasados(10) }}
+{% endif %}

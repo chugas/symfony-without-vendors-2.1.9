@@ -1,0 +1,62 @@
+parameters:
+    success.model.user.class: Application\Success\UserBundle\Entity\User
+    success.repository.user.class: Application\Success\UserBundle\Entity\Repository\UserRepository
+
+services:
+    ###############################################    
+    #FORMULARIO DE REGISTRO
+    ###############################################  
+    success.registration.form.type:
+        class: Application\Success\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: success_user_registration }
+
+    success.form.handler.registration:
+        class: Application\Success\UserBundle\Form\Handler\RegistrationFormHandler
+        arguments: ["@fos_user.registration.form", "@request", "@fos_user.user_manager", "@fos_user.mailer", "@fos_user.util.token_generator", "@event_dispatcher"]
+        scope: request
+        public: false
+
+    ###############################################    
+    #FORMULARIO PROFILE
+    ###############################################
+    success.form.profile.type:
+        class: Application\Success\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: success_user_profile }
+
+    success.form.handler.profile:
+        class: Application\Success\UserBundle\Form\Handler\ProfileFormHandler
+        arguments: ["@fos_user.profile.form", "@request", "@fos_user.user_manager"]
+        scope: request
+        public: false             
+
+    ###############################################    
+    #USER MANAGER
+    ###############################################
+    success.user.manager:
+        class: Application\Success\UserBundle\Doctrine\UserManager
+        arguments: ["@security.encoder_factory", "@fos_user.util.username_canonicalizer", "@fos_user.util.email_canonicalizer", "@fos_user.entity_manager", %fos_user.model.user.class%]
+        public: true
+        
+    success.user.profile.complete:
+        class: Application\Success\UserBundle\Listener\ProfileListener
+        arguments: ["@security.context", "@router", '@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login }
+            - { name: kernel.event_listener, event: kernel.response }
+
+    success.repository.user.metadata:
+        factory_method: getClassMetadata
+        factory_service: doctrine.orm.entity_manager
+        class: Doctrine\ORM\Mapping\ClassMetadata
+        arguments:
+            - %success.model.user.class%
+
+    success.repository.user:
+        class: %success.repository.user.class%
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@success.repository.user.metadata'

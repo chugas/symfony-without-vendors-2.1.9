@@ -1,0 +1,97 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}
+<div class="header_lo_que_pasa">
+  <div class="titulo">
+    <p>FIESTAS</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="col-left">
+  <div class="comentario_texto">
+    <div class="fecha">
+      <div class="avatar">
+        <img src="images/mrbean.jpg" />
+      </div>
+      <div class="date">
+        <div class="up">mar</div>
+        <div class="down">27</div>
+      </div>
+    </div>
+    <div class="text">
+      <p>
+        <span class="nombre">Juan</span>
+        <span class="fiesta"><span>comentó</span> en la fiesta</span>
+        <span class="nombre_fiesta">Nombre tal</span>
+      </p>
+      <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet pulvinar odio. Sed eget tellus mi, non mollis erat. Suspendisse ullamcorper mollis diam sit amet varius”. </p>
+      <p class="bottom"><span class="fecha">06 de julio a las 17:55</span> <a class="like" href="#">tá bueno <span>(19)</span></a>
+    </div>
+  </div>
+  <div class="comentario_fiesta">
+    <div class="fecha">
+      <div class="avatar">
+        <img src="images/mrbean.jpg" />
+      </div>
+      <div class="date">
+        <div class="up">mar</div>
+        <div class="down">27</div>
+      </div>
+    </div>
+    <div class="text">
+      <p>
+        <span class="nombre">Juan</span>
+        <span class="fiesta"><span>agregó</span> la fiesta</span>
+        <span class="nombre_fiesta">Nombre tal</span>
+      </p>
+      <img src="images/img.png" width="180" height="250" />
+      <p class="bottom"><span class="fecha">06 de julio a las 17:55</span> <a class="like" href="#">tá bueno <span>(19)</span></a>
+    </div>
+  </div>
+  <div class="comentario_img">
+    <div class="fecha">
+      <div class="avatar">
+        <img src="images/mrbean.jpg" />
+      </div>
+      <!--
+      <div class="date">
+          <div class="up">mar</div>
+          <div class="down">27</div>
+      </div>
+      -->
+    </div>
+    <div class="text">
+      <p>
+        <span class="nombre">Juan</span>
+        <span class="fiesta"><span>Subió una foto</span></span>
+      </p>
+      <img src="images/img.png" width="349" height="250" />
+      <p class="bottom"><span class="fecha">06 de julio a las 17:55</span> <a class="like" href="#">tá bueno <span>(19)</span></a>
+    </div>
+  </div>
+  <div class="comentario_entrada">
+    <div class="fecha">
+      <div class="avatar">
+        <img src="images/mrbean.jpg" />
+      </div>
+      <div class="date">
+        <div class="up">mar</div>
+        <div class="down">27</div>
+      </div>
+    </div>
+    <div class="text">
+      <p>
+        <span class="nombre">Laura</span>
+        <span class="fiesta"><span>ganó una entrada</span> para la fiesta</span>
+        <span class="nombre_entrada">Nombre tal</span>
+      </p>
+      <p class="bottom"><span class="fecha">06 de julio a las 17:55</span> <a class="like" href="#">tá bueno <span>(19)</span></a>
+    </div>
+  </div>
+  <div class="more">
+    <a href="#">VER MAS</a>
+  </div>      
+</div>
+{% endblock %}

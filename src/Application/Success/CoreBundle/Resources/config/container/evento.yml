@@ -1,0 +1,23 @@
+parameters:
+
+services:
+    success.form.type.evento:
+        class: %success.form.type.evento.class%
+        tags:
+          - { name: form.type, alias: success_evento }
+        arguments:
+            - %success.model.evento.class%
+            
+    success.form.type.eventoHasImage:
+        class: Application\Success\CoreBundle\Form\Type\EventoHasImageType
+        tags:
+          - { name: form.type, alias: success_evento_image }
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
+    success.form.type.eventoHasVideo:
+        class: Application\Success\CoreBundle\Form\Type\EventoHasVideoType
+        tags:
+          - { name: form.type, alias: success_evento_video }
+        arguments:
+            - "@doctrine.orm.entity_manager"

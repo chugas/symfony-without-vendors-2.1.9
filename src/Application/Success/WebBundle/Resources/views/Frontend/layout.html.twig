@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html {{ sonata_seo_html_attributes() }}>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    {{ sonata_seo_title() }}
+    {{ sonata_seo_metadatas() }}
+    {% block stylesheets %}
+      {% stylesheets  'assets/font/stylesheet.css'
+                      'assets/css/layout.css'
+                      'assets/css/SpryAssets/SpryMenuBarVertical.css'
+                      'assets/css/SpryAssets/SpryMenuBarHorizontal.css'
+                      'assets/css/SpryAssets/SpryCollapsiblePanel.css'
+                      'assets/js/select2-3/select2.css'
+                      'assets/js/jquery/fancy/jquery.fancybox.css'
+                      'assets/js/bootstrap/css/bootstrap_popover.css'
+                      filter='yui_css' output='assets/compiled/css/frontend.css' %}
+      <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+      {% endstylesheets %}    
+    {% endblock %}
+    {% block rss %}{% endblock %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/assets/js/jquery/jquery-1.11.0.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body id="{% block id '' %}" class="{% block body_class '' %}">
+    <article>
+      {% block header %}
+        {{ render_esi(controller('CoreBundle:Default:header')) }}
+      {% endblock %}
+
+      {% block body %}
+        <div class="content center">
+          {% block header_title %}{% endblock %}
+          {% block content %}{% endblock %}
+          {% block content_right %}{% endblock %}
+          <div style="clear:both"></div>
+        </div>
+      {% endblock %}
+    </article>
+      
+    {% block footer %}
+      <footer>
+        <div class="center footer">
+          <menu>
+            <nav>
+              <div class="just">
+                <a href="{{ path('homepage') }}">JUST RAVE</a>
+              </div>
+              <div class="date">
+                <div class="up">{{ 'now' | date('M') }}</div>
+                <div class="down">{{ 'now' | date('d') }}</div>
+              </div>
+              <div class="fiestas">
+                <a href="{{ path('web_eventos') }}">FIESTAS</a>
+              </div>
+              <div class="usuarios">
+                <a href="{{ path('web_usuarios') }}">USUARIOS</a>
+              </div>
+              <div class="foros">
+                <a href="{{ path('ccdn_forum_user_category_index', { 'forumName': 'default' }) }}">FOROS</a>
+              </div>
+              <div class="que-pasa">
+                <a href="{{ path('web_newsfeed') }}">LO QUE PASA</a>
+              </div>
+            </nav>
+          </menu>
+          <div class="links">
+              <dl>
+                <dd><a href="{{ path('core_page', {'page': 'quienes-somos' }) }}">Quienes somos</a></dd>
+                <dd><a href="{{ path('core_page', {'page': 'que-hacemos' }) }}">Que hacemos</a></dd>
+                <dd><a href="{{ path('core_contacto') }}">Contacto</a></dd>
+              </dl>
+              <dl>
+                <dd><a href="{{ path('web_eventos') }}">Listado</a></dd>
+              </dl>
+              <dl>
+                <dd><a href="{{ path('web_usuarios') }}">Listado</a></dd>
+              </dl>
+              <dl>
+                <dd><a href="{{ path('ccdn_forum_user_category_index', { 'forumName': 'default' }) }}">Foro Justrave</a></dd>
+              </dl>
+          </div>
+            <p>Producciones <a href="{{ path('homepage') }}">JustRave</a> de Musica Electronica ©: CONTACTO: <a href="mailto:alegrasso@gmail.com">alegrasso@gmail.com</a></p>
+        </div>
+      </footer>
+    {% endblock %}
+
+    {% block javascripts %}
+      <!--<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>-->
+      {% javascripts output='assets/compiled/js/frontend.js'
+          'assets/js/easySlider1.7.js'
+          'assets/js/jquery/fancy/jquery.fancybox.js'
+          'assets/js/init.js'
+          'assets/js/select2-3/select2.js'
+          'assets/js/select2-3/select2_locale_es.js'
+          'assets/js/frontend/productora.js'
+          'assets/js/frontend/evento.js'
+          'assets/js/frontend/media.js'
+          'assets/js/frontend/pager.js'
+          'assets/js/bootstrap/js/bootstrap.popover.min.js'
+      %}
+      <script type="text/javascript" src="{{ asset_url }}"></script>
+      {% endjavascripts %}
+
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('.popup').click(function(event) {
+            var width  = 626,
+                height = 436,
+                left   = ($(window).width()  - width)  / 2,
+                top    = ($(window).height() - height) / 2,
+                url    = this.href,
+                opts   = 'status=1' +
+                         ',width='  + width  +
+                         ',height=' + height +
+                         ',top='    + top    +
+                         ',left='   + left;
+
+            window.open(url, 'twitter', opts);
+
+            return false;
+          });
+
+          $('select.selector').select2();
+        });
+      </script>
+  {% endblock %}
+
+  </body>
+</html>

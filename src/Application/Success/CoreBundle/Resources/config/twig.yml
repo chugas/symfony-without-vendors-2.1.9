@@ -1,0 +1,33 @@
+parameters:
+    
+services:
+    success.twig.evento:
+        class: Application\Success\CoreBundle\Twig\EventoExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+            - "@success.repository.evento"
+            - "@templating"
+
+    success.twig.radio:
+        class: Application\Success\CoreBundle\Twig\RadioExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+            { path: %success.settings.path% }
+
+    success.twig.core:
+        class: Application\Success\CoreBundle\Twig\CoreExtension
+        tags:
+          - { name: twig.extension }
+        arguments:
+            - "@success.image.provider"
+            - "@sonata.media.pool"
+            - "@success.repository.user"
+            - "@translator"
+
+    success.helper.twig:
+        class: Application\Success\CoreBundle\Twig\HelperExtension
+        arguments: ["@templating", "@fos_user.registration.form"]
+        tags:
+            - { name: twig.extension }

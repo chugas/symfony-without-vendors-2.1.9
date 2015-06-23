@@ -1,0 +1,16 @@
+<div class="ravers">
+  <a href="#">RAVERS</a>
+  {% for raver in 1..20 %}
+  <div>
+    <a href="{{ path('web_usuario', {'username': 'gaston_caldeiro_474'}) }}">
+      {#% if user.avatar is not null %}
+      <img width="72" height="72" src="{{ web_basic_path(user.avatar.id, user.avatar.providerReference, user.avatar.context) | apply_filter('users_thumb') }}" alt="{{ user.firstname~' '~user.lastname }}" />
+      {% else %}
+      <img width="72" height="72" alt="{{ user.firstname~' '~user.lastname }}" src="/assets/img/avatar_{{ user.gender }}.jpg" />
+      {% endif %#}
+      <img height="36" width="36" src="/assets/img/avatar_u.jpg">
+    </a>
+  </div>
+  {% endfor %}
+  <a href="{{ path('web_usuarios') }}" class="more">+ VER MAS</a>
+</div>

@@ -1,0 +1,15 @@
+<div id="jr_music_modal" style="display:none;">
+  <div class="subir_musica">
+    <p class="titulo">SUBIR MÚSICA</p>
+    <form id="jr_form_soundcloud" action="{{ path('media_upload', {'context': 'users', 'providerName': 'sonata.media.provider.soundcloud', 'objectClass': objectClass,  'objectId': objectId }) }}" method="POST">
+      <input id="success_soundcloud_values" type="hidden" value="" name="soundcloud_ids" />
+      <label>Copie y pegue el codigo de su SOUNDCLOUD</label>
+      <label>
+        <input id="success_soundcloud_url" type="text" name="url" value="" />
+      </label>
+      {#<label class="checkbox"><input type="checkbox" class="check"> Es un tema mío</label>
+      <label class="checkbox"><input type="checkbox" class="check"> Es un set mío</label> #}
+      <label class="button"><button type="button" onclick="return {{ function_name }}(this, event);"><i class="icon-envelope"></i>&nbsp;SUBIR</button></label>
+    </form>
+  </div>
+</div>

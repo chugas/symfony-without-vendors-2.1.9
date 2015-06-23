@@ -1,0 +1,42 @@
+{#% if (is_granted('ROLE_USER')) %}
+<div class="agregar">
+  <a href="#">AGREGAR FOTO</a>
+</div>
+
+<div class="agregar">
+  <a href="#">AGREGAR VIDEO</a>
+</div>
+{% endif %#}
+
+<div class="compartir">
+  <a href="#">COMPARTIR</a>
+</div>
+
+<div class="precio_entry">
+  <a href="#">ENTRADA ({{ (evento.unit == 'USD' ? 'US$' : '$') }}{{ evento.price | round }})</a>
+</div>
+
+<div class="evento">
+  <a href="#">SEGUIR EVENTO</a>
+</div>
+
+{% include 'WebBundle:Frontend/Usuario:ravers.html.twig' %}
+
+<div style="clear:both"></div>
+
+<div class="productora">
+  <p>{{ evento.getProductora() | upper }}</p>
+  <a href="#">+</a>
+</div>
+
+{#<div class="sorteo">
+  <div class="titulo">
+    <p>PARTICIPAN (144)</p>
+  </div>
+  <div class="text">
+    <p>PARA GANAR ENTRADAS DOBLES INGRESA TU CELULAR AQUI</p>
+    <form>
+      <textarea onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">celular</textarea>
+    </form>
+  </div>
+</div>#}

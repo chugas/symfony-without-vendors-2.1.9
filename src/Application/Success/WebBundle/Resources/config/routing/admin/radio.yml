@@ -1,0 +1,4 @@
+admin_radio:
+    pattern:  /radio/configuracion
+    defaults: { _controller: CoreBundle:Admin/Radio:index }
+

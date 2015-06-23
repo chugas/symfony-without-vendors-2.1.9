@@ -1,0 +1,58 @@
+{% spaceless %}
+<div class="party {% block evento_container_class %}{% endblock %}">
+  {% block evento_titulo %}
+  <div class="titulo">
+    <div class="red-box">
+      <p>{{ evento.timeAt | date('M') }}</p>
+    </div>
+    <div class="fecha">
+      <p>{{ evento.timeAt | date('D') | lower }} <span>{{ evento.timeAt | date('d') }}</span></p>
+    </div>
+    <a href="{{ path('web_eventos_show', {'id': evento.id, 'slug': evento.slug }) }}"><p>{{ evento.name | upper }}</p></a>
+    <div></div>
+    <!--<div class="number">
+      <p>600</p>
+    </div>-->
+  </div>
+  {% endblock %}
+
+  {% block evento_productora %}
+    {% block evento_productora_img %}
+      {% if evento.flyer is not null and evento.flyer is not empty %}
+        <img src="{{ web_local_path(evento.flyer, 'uploads/eventos') | apply_filter('evento_medium') }}" alt="{{ evento.name }}" title="{{ evento.name }}" />
+      {% else %}
+        <img src="/assets/img/tmp/img.png" width="445" height="500" alt="{{ evento.name }}" title="{{ evento.name }}" />
+      {% endif %}
+    {% endblock %}
+    
+    {% block evento_productora_nombre %}    
+      {% if evento.productora is not null %}
+      <div class="productora">
+        <p>{{ evento.productora.name | upper }}</p>
+        <a href="{{ path('web_usuarios') }}">+</a>
+      </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block evento_productora_text %}      
+      <p class="text-productora">{{ evento.description | nl2br }}</p>
+    {% endblock %}
+  {% endblock %}
+  
+  {% block evento_lineup %}
+    {% if evento.lineup is not null %}
+      <div class="line-up">
+        LINE UP
+      </div>
+
+      {% for actor in evento.lineup %}
+        <div class="productora">
+          <p>{{ actor | truncate(80) }}</p>
+          {#<a href="#">+</a>#}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endblock %}
+</div>
+<div class="clear"></div>
+{% endspaceless %}

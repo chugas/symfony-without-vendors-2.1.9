@@ -1,0 +1,8 @@
+<div class="fest">
+  <div class="date">
+    <div class="up">{{ evento.timeAt | date('M') }}</div>
+    <div class="down">{{ evento.timeAt | date('d') }}</div>
+  </div>
+  <p><a href="{{ path('web_eventos_show', {'id': evento.id, 'slug': evento.slug }) }}">{{ evento.name | upper }}, {{ evento.description | truncate(80) }}</a></p> 
+  <a href="{{ path('web_eventos_show', {'id': evento.id, 'slug': evento.slug }) }}" title="review" class="review"><img src="/assets/img/star-yellow.png" width="12" height="12" /></a>
+</div>

@@ -1,0 +1,127 @@
+Application\Success\CoreBundle\Entity\Evento:
+    type: entity
+    table: success_evento
+    gedmo:
+       soft_deleteable:
+         field_name: deletedAt
+         time_aware: false
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 128
+            nullable: false
+        slug:
+            type: string
+            length: 256
+            nullable: false
+            gedmo:
+                slug:
+                    unique: true
+                    separator: "-"
+                    style: camel
+                    fields: [name]
+        description:
+            type: text
+            nullable: false
+        price:
+            type: decimal
+            scale: 2
+            nullable: true
+        unit:
+            type: string
+            columnDefinition: ENUM('USD', 'UYU') NOT NULL DEFAULT 'UYU'
+        address:
+            type: string
+            length: 255
+            nullable: false            
+        place:
+            type: string
+            length: 255
+            nullable: true
+        timeAt:
+            type: datetime
+            column: time_at
+            nullable: true
+        descriptionAnticipada:
+            type: text
+            column: description_anticipada
+            nullable: true
+        priceAnticipada:
+            type: decimal
+            scale: 2
+            column: price_anticipada
+            nullable: true
+        validateAtAnticipada:
+            type: date
+            column: validate_at_anticipada
+            nullable: true        
+        sellJustrave:
+            type: boolean
+            column: sell_justrave
+            nullable: false
+            options:
+                default: 0
+        lineup:
+            type: array
+            nullable: true
+        lat:
+            type: decimal
+            precision: 10
+            scale: 8
+            nullable: true
+        lng:
+            type: decimal
+            precision: 10
+            scale: 8
+            nullable: true
+        flyer:
+            type: string
+            columnDefinition: CHAR(128)
+            nullable: true
+        deletedAt:
+            type: datetime
+            column: deleted_at
+            nullable: true
+    manyToOne:
+        productora:
+            targetEntity: Application\Success\CoreBundle\Entity\Productora
+            cascade: []
+            nullable: true
+            joinColumn:
+                name: productora_id
+                referencedColumnName: id
+                onDelete: SET NULL
+        user:
+            targetEntity: Symfony\Component\Security\Core\User\UserInterface
+            cascade: []
+            nullable: true
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+                onDelete: SET NULL
+    oneToMany:
+        images:
+            targetEntity: Application\Success\CoreBundle\Entity\EventoHasImage
+            mappedBy: evento
+            cascade: ["persist", "remove"]
+            orphanRemoval: true
+            orderBy:
+              position: ASC
+        videos:
+            targetEntity: Application\Success\CoreBundle\Entity\EventoHasVideo
+            mappedBy: evento
+            cascade: ["persist", "remove"]
+            orphanRemoval: true
+            orderBy:
+              position: ASC
+    lifecycleCallbacks:
+        prePersist: [preUpload]
+        preUpdate: [preUpload]
+        postPersist: [upload]
+        postUpdate: [upload]
+        postRemove: [removeUpload]
+

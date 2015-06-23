@@ -1,0 +1,39 @@
+parameters:
+
+services:
+           
+    success.admin.evento:
+        class: Application\Success\CoreBundle\Sonata\Admin\EventoAdmin
+        tags:
+          - { name: sonata.admin, manager_type: orm, show_in_dashboard: true, group: 'Eventos', label: Eventos }
+        arguments:
+            - null
+            - Application\Success\CoreBundle\Entity\Evento
+            - null
+
+    success.admin.evento_images:
+        class: Application\Success\CoreBundle\Sonata\Admin\EventoHasImageAdmin
+        tags:
+          - { name: sonata.admin, manager_type: orm, show_in_dashboard: false }
+        arguments:
+            - null
+            - Application\Success\CoreBundle\Entity\EventoHasImage
+            - null
+            
+    success.admin.evento_videos:
+        class: Application\Success\CoreBundle\Sonata\Admin\EventoHasVideoAdmin
+        tags:
+          - { name: sonata.admin, manager_type: orm, show_in_dashboard: false }
+        arguments:
+            - null
+            - Application\Success\CoreBundle\Entity\EventoHasVideo
+            - null
+
+    success.admin.productora:
+        class: Application\Success\CoreBundle\Sonata\Admin\ProductoraAdmin
+        tags:
+          - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: 'Eventos', label: Productoras }
+        arguments:
+            - null
+            - Application\Success\CoreBundle\Entity\Productora
+            - null

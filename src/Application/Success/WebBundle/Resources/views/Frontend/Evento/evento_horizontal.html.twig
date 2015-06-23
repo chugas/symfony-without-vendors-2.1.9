@@ -1,0 +1,21 @@
+{% extends 'WebBundle:Frontend/Evento:evento.html.twig' %}
+
+{% block evento_container_class %}party-horiz{% endblock %}
+
+{% block evento_productora %}
+  {% block evento_productora_img %}
+    {% if evento.flyer is not null and evento.flyer is not empty %}
+      <img src="{{ web_local_path(evento.flyer, 'uploads/eventos') | apply_filter('evento_flyer') }}" alt="{{ evento.name }}" title="{{ evento.name }}" />
+    {% else %}
+      <img src="/assets/img/tmp/img.png" width="672" height="500" alt="{{ evento.name }}" title="{{ evento.name }}" />
+    {% endif %}
+  {% endblock %}
+
+  {% block evento_productora_text %}
+    {{ parent() }}
+  {% endblock %}
+    
+  {% block evento_productora_nombre %}
+    {{ parent() }}
+  {% endblock %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}
+<div class="header_form">
+  <div class="fiestas">
+    <p><a href="javascript:void(0)">RECUPERAR contraseña</a></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="content center">
+  <div class="col-left">
+    <div class="login_registro">
+      {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+    </div>
+  </div>
+</div>
+{% endblock %}

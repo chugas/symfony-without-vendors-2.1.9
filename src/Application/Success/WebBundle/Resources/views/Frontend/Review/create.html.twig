@@ -1,0 +1,105 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block header_title %}
+<div class="header2">
+  <div class="fiestas">
+    <p><a href="javascript:void(0)">REVIEWS</a></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="col-left">
+    <div class="review_coment comentarios">
+      <form id="review_create_form" action="{{ path('web_reviews_create') }}" method="POST" {{ form_enctype(form) }}>
+        {{ form_errors(form) }}
+        {{ form_widget(form._token) }}
+        <div class="comentario">
+          <div class="buttons">
+            <button class="profile">
+              <img src="/assets/img/profile_comment.png" />
+            </button>
+            <a class="camera fancybox" href="#inline8"><img src="/assets/img/camera_comment.png"  /></a>
+          </div>
+
+          <div class="nombre {% if form.title.vars.errors|length > 0 %}success-field-error{% endif %}">
+            {{ form_widget(form.title, {'attr': { 'placeholder': 'TITULO' } }) }}
+          </div>
+          {{ form_errors(form.title) }}
+
+          <div class="text-area">
+            <div class="content_entry content_entry2" id="RICH_TEXTAREA" contenteditable="true"></div>
+            <div id="RICH_TEXTAREA_MEDIA" class="content_entry_media"></div>
+          </div>
+          {{ form_errors(form.description) }}  
+
+          <button id="review-button-submit" type="submit">Enviar</button>
+
+          <div style="clear:both"></div>
+          <br>
+          
+          <div style="display:none">    
+            {{ form_widget(form.description, {'attr': { 'placeholder': 'DESCRIPCION' } }) }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{#<div class="content center">
+  <form id="evento_create_form" action="{{ path('web_reviews_create') }}" method="POST" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+
+    <div class="datos">
+      <div class="nombre {% if form.title.vars.errors|length > 0 %}success-field-error{% endif %}">
+        {{ form_errors(form.title) }}
+        {{ form_widget(form.title, {'attr': { 'placeholder': 'TITULO' } }) }}
+      </div>
+      <div class="info {% if form.description.vars.errors|length > 0 %}success-field-error{% endif %}">
+        {{ form_errors(form.description) }}
+        <p>{{ form_widget(form.description, {'attr': { 'placeholder': 'DESCRIPCION' } }) }}</p>
+      </div>
+    </div>
+    <button type="submit">GUARDAR</button>
+    <div style="clear:both"></div>
+    
+  </form>
+</div>#}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {% javascripts 'http://code.jquery.com/ui/1.10.3/jquery-ui.js'
+                'assets/js/jquery/jquery.ui.autocomplete.html.js'
+                'assets/js/jquery/jquery.rich_textarea.js'
+                'assets/js/jquery/setup_rich_textarea.js'
+                'assets/js/jquery/jquery.scrollTo.min.js' 
+                filter='yui_js' output='js/compiled/js_textarea.js' %}
+  <script src="{{ asset_url }}" type="text/javascript"></script>
+  <script type="text/javascript">
+    setup_rich_textarea();
+    $('#comment-form').on('click', '.profile', function( event ){
+      alert('CLICK .profile');
+     // need this for MSIE. It loses focus when the button is pressed.
+      $( '#RICH_TEXTAREA' ).focus();
+      //$( '#RICH_TEXTAREA' ).rich_textarea( 'insertObject', '<span><img width="72" height="72" src="images/cloud.png"></span>', 'angry' );
+      $( '#RICH_TEXTAREA_MEDIA' ).append( $('<span><a class="delete" href="#"></a><img width="72" height="72" src="/assets/img/cloud.png"></span>') );
+    });
+
+    // button to add MxMC Logo.
+    $('body').on('click', '.camera-add', function( event ){
+      // need this for MSIE. It loses focus when the button is pressed.
+      $( '#RICH_TEXTAREA' ).focus();
+
+      //$( '#RICH_TEXTAREA_MEDIA' ).rich_textarea( 'insertObject', '<span> <img width="72" height="72" src="images/cloud.png"></span>', 'mbymc' );
+      $( '#RICH_TEXTAREA_MEDIA' ).append( $('<span><a class="delete" href="#"></a> <img width="72" height="72" src="images/cloud.png"></span>') );
+    });
+
+    $('#review-button-submit').on('click', function( event ){
+      $( '#review_description' ).val( $( '#RICH_TEXTAREA' ).rich_textarea( 'getTextContent' ) );
+    });
+  </script>
+  {% endjavascripts %}
+{% endblock %}
+

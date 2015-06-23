@@ -1,0 +1,15 @@
+web_reviews:
+    pattern:  /
+    defaults: { _controller: CoreBundle:Review:index }
+    
+web_reviews_create:
+    pattern:  /create/
+    defaults: { _controller: CoreBundle:Review:create }
+    
+web_reviews_update:
+    pattern:  /modificar/
+    defaults: { _controller: CoreBundle:Review:update }
+
+web_reviews_show:
+    pattern:  /{id}/{slug}/
+    defaults: { _controller: CoreBundle:Review:show }

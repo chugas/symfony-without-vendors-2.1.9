@@ -1,0 +1,15 @@
+Application\Success\CoreBundle\Entity\Action:
+    type: entity
+    table: success_timeline_action
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }        
+    oneToMany:
+        actionComponents:
+            targetEntity: Application\Success\CoreBundle\Entity\ActionComponent
+            mappedBy: action
+            cascade: ["persist"]
+        timelines:
+            targetEntity: Application\Success\CoreBundle\Entity\Timeline
+            mappedBy: timelines

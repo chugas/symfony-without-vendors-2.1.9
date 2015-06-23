@@ -1,0 +1,154 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+<div class="content center">
+  <div class="col-left">
+    {% set max_per_page = 5 %}
+    {% if user.getIsDj() %}
+      {% set songs = user.getSongs().slice(0, max_per_page) %}
+      {% if(songs | length > 0 ) %}
+        <div class="party">
+          <div class="sound">
+            <p>SOUNDCLOUDS</p>
+          </div>
+        </div>
+
+        <div class="soundcloud">
+          <div id="container-music">
+            {% for song in songs %}
+              <div class="cloud" data-id="{{ song.id }}">
+                <a href="{{ song.getProviderMetadata().html | iframe_src }}" class="fancybox fancybox.iframe">
+                  <img src="{{ song.getProviderMetadata().thumbnail_url }}" width="72" height="72" />
+                </a>
+                <div class="info">
+                  <h6 title="{{ song.name }}">{{ song.name | truncate(50, true) }}</h6>
+                  <p title="{{ song.getProviderMetadata().author_name }}">{{ song.getProviderMetadata().author_name }}</p>
+                </div>
+                <a href="{{ song.getProviderMetadata().html | iframe_src }}" class="more fancybox fancybox.iframe">+</a>
+                <a class="star" href="#">
+                  <img width="12" height="12" src="/assets/img/star-yellow.png">
+                </a>
+                <a href="#" class="delete">x</a>
+              </div>
+            {% endfor %}
+          </div>
+
+          {% if user.getSongs().count() > max_per_page %}
+            {% include 'WebBundle:Frontend/Helper:pager.html.twig' with { 'container': 'container-music', 'link': path('web_usuarios_medias', {'page': 2, 'provider': 'songs' }) } %}
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+    
+    {% if user.getIsVj() %}
+      {% set youtubes = user.getYoutubes().slice(0, max_per_page) %}
+        {% if(youtubes | length > 0 ) %}
+          <div class="party">
+            <div class="youtube">
+              <p>VIDEOS</p>
+            </div>
+          </div>
+
+          <div class="soundcloud">
+            <div id="container-videos">
+              {% for youtube in youtubes %}
+                <div class="cloud" data-id="{{ youtube.id }}">
+                  <a href="//www.youtube.com/embed/{{ youtube.providerreference }}?autoplay=1" class="fancybox fancybox.iframe">
+                    <img src="{{ youtube.getProviderMetadata().thumbnail_url }}" width="72" height="72" />
+                  </a>
+                  <div class="info">
+                    <h6 title="{{ youtube.name }}">{{ youtube.name }}</h6>
+                    <p title="{{ youtube.getProviderMetadata().author_name }}">{{ youtube.getProviderMetadata().author_name }}</p>
+                  </div>
+                  <a href="//www.youtube.com/embed/{{ youtube.providerreference }}?autoplay=1" class="more fancybox fancybox.iframe">+</a>
+                  <a class="star" href="#"><img width="12" height="12" src="/assets/img/star-yellow.png"></a>
+                  <a href="#" class="delete">x</a>
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if user.getYoutubes().count() > max_per_page %}
+              {% include 'WebBundle:Frontend/Helper:pager.html.twig' with { 'container': 'container-videos', 'link': path('web_usuarios_medias', {'page': 2, 'provider': 'youtubes' }) } %}
+            {% endif %}
+          </div>
+        {% endif %}   
+    {% endif %}    
+
+    {#<div class="party">
+      <div class="perfil">
+        <p>VJ USUARIO TAL</p>
+        <div class="camera">
+          <a href="#"><img src="/assets/img/camera.png" width="28" height="12" /></a>
+        </div>
+        <div class="profile">
+          <a href="#"><img src="/assets/img/profile.png" width="28" height="28" /></a>
+        </div>
+        <div class="soundcloud_2">
+          <a href="#"><img src="/assets/img/soundcloud.png" width="28" height="28" /></a>
+        </div>     
+      </div>                
+    </div>#}
+
+    <div style="clear:both"></div>
+    <div style="margin-left: 36px;">
+    {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : 'user_' ~ user.id } %}
+    </div>
+  </div>
+  
+  <div class="col-right">        
+    <div class="usuario2">
+      <p class="titulo" title="{{ user }}">{{ user | truncate(12) }}</p>
+      <div class="seting">
+        <a href="{{ path('fos_user_profile_edit') }}"><img src="/assets/img/settings.png" width="28" height="28" alt="settings" /></a>
+      </div>
+      <div class="info">
+        <p>{{ user }}</p>
+        {% if user.gender is not null %}
+        <p>{{ (user.gender == 'm' ? 'Hombre' : 'Mujer') }} {{ (user.dateOfBirth is not null ? 'de '~user.dateOfBirth | age~' años' : '') }}</p>
+        {% endif %}
+        {% if user.email is not null %}
+        <p>{{ user.email }}</p>
+        {% endif %}
+        {% if user.phone is not null %}
+        <p>{{ user.phone }}</p>
+        {% endif %}
+        {% if user.website is not null %}
+        <p>{{ user.website }}</p>
+        {% endif %}
+        {% if user.facebookName is not null %}
+        <p>facebook.com/{{ user.facebookName }}</p>
+        {% endif %}
+        {% if user.twitterName is not null %}
+        <p>twitter.com/{{ user.twitterName }}</p>
+        {% endif %}
+      </div>
+      <div class="creo">
+        <p class="titulo">CREO</p>
+        <p>{{ user.biography | truncate(80) }}</p>
+      </div>
+      {#<div class="info_profile">
+        <p><span class="msj">Mensajes:</span> 1920</p>
+        <p><span class="fotos">Fotos:</span> 45000</p>
+        <p><span class="videos">Videos:</span> 5</p>
+        <p><span class="sets">Sets:</span> 5</p>
+      </div>#}
+      
+      {% include 'WebBundle:Frontend/Usuario:ravers.html.twig' %}
+      {% include 'WebBundle:Frontend/Usuario:myevents.html.twig' %}
+      
+      {#<div class="cloud">
+        <img width="72" height="72" src="/assets/img/cloud.png">
+        <iframe width="144" height="72" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F82071446&color=00ff66&auto_play=false&show_artwork=false"></iframe>
+        <a href="#">+</a>
+      </div>#}
+
+      {% if user.youtube is not null %}
+      <div class="videos">
+        <iframe width="217" height="163" src="//www.youtube.com/embed/{{ user.youtube.providerreference }}?autoplay=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+<div class="event">
+  <div class="date">
+    <div class="up">{{ evento.timeAt | date('M') }}</div>
+    <div class="down">{{ evento.timeAt | date('d') }}</div>
+  </div>
+  <div class="fecha">
+    <p><a href="{{ path('web_eventos_show', {'id': evento.id, 'slug': evento.slug }) }}" title="{{ evento.name }}">{{ evento.name | truncate(20) | upper }}</a></p>
+  </div>
+</div>

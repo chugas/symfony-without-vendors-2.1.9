@@ -1,0 +1,23 @@
+web_usuarios:
+    pattern:  /usuarios/
+    defaults: { _controller: CoreBundle:User:index }
+
+web_newsfeed:
+    pattern:  /lo-que-pasa/
+    defaults: { _controller: CoreBundle:User:newsfeed }
+    
+web_usuarios_medias:
+    pattern:  /usuario/media/
+    defaults: { _controller: SuccessUserBundle:Profile:listMedias }
+
+web_suggest:
+    pattern:  /suggest/
+    defaults: { _controller: CoreBundle:Suggest:suggest }
+
+web_usuario:
+    pattern: /usuario/{username}/
+    defaults: { _controller: CoreBundle:User:show }
+    
+web_google_redirect_google:
+    pattern: /invite/redirect/{service}/
+    defaults: { _controller: CoreBundle:Invite:redirect, service: google }

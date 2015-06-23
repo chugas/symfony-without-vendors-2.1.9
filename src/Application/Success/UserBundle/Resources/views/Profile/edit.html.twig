@@ -1,0 +1,447 @@
+{% extends 'WebBundle:Frontend:layout.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block radio_widget %}
+{% if label is empty %}
+  {% set label = name|humanize %}
+{% endif %}
+{% if attr.addClass is not defined %}
+  {% set addClass = "" %}
+{% else %}
+  {% set addClass = attr.addClass %}
+{% endif %}
+{% spaceless %}
+  <label for="{{ id }}" class="remember_me {{ addClass }}"><input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ label|trans({}, translation_domain) }}</label>
+{% endspaceless %}
+{% endblock radio_widget %}
+
+{#% block checkbox_widget %}
+{% spaceless %}
+  <label  for="{{ id }}"><input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ label|trans }}</label>
+{% endspaceless %}
+{% endblock checkbox_widget %#}
+
+{% set user = app.user %}
+{% set max_per_page = 5 %}
+
+{% block content %}
+
+<div class="col-left">
+  <div class="party">
+    <div class="sound">
+      <p class="edit">EDITAR PERFIL</p>
+    </div>
+  </div>            
+  <div class="login_registro">
+    <form id="profile-form" role="form" action="{{ path('fos_user_profile_edit') }}" method="POST" autocomplete="off">
+      {{ form_errors(form) }}
+      {{ form_widget(form._token) }}
+      <div class="col-left">
+        <div class="{% if form.firstname.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.firstname) }}
+          <label>NOMBRE</label>
+          <label>{{ form_widget(form.firstname) }}</label>
+        </div>
+
+        <div class="{% if form.lastname.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.lastname) }}
+          <label>APELLIDO</label>
+          <label>{{ form_widget(form.lastname) }}</label>
+        </div>
+
+        <div class="{% if form.email.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.email) }}
+          <label>E-MAIL</label>
+          <label>{{ form_widget(form.email) }}</label>
+        </div>
+
+        <div class="{% if form.dateOfBirth.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.dateOfBirth) }}
+          <label>FECHA DE NACIMIENTO</label>
+          <label>{{ form_widget(form.dateOfBirth.day, {'attr': { 'style': 'float:left' } }) }}{{ form_widget(form.dateOfBirth.month, {'attr': { 'style': 'float:left' } }) }}{{ form_widget(form.dateOfBirth.year, {'attr': { 'style': 'float:left' } }) }}</label>
+          <div style="clear:both"></div>
+        </div>
+
+        <div class="{% if form.gender.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.gender) }}
+          {{ form_widget(form.gender[0]) }}
+          {{ form_widget(form.gender[1]) }}
+        </div>         
+
+        <div class="{% if form.phone.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.phone) }}
+          <label>CELULAR</label>
+          <label>{{ form_widget(form.phone) }}</label>
+        </div>
+
+        <div class="{% if form.website.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.website) }}
+          <label>WEB</label>
+          <label>{{ form_widget(form.website) }}</label>
+        </div>
+
+        <div class="{% if form.facebook_name.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.facebook_name) }}
+          <label>FACEBOOK</label>
+          <label>{{ form_widget(form.facebook_name) }}</label>
+        </div>
+
+        <div class="{% if form.twitter_name.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.twitter_name) }}
+          <label>TWITTER</label>
+          <label>{{ form_widget(form.twitter_name) }}</label>
+        </div>
+        
+        <div class="{% if form.biography.vars.errors|length > 0 %}has-error sonata-ba-field-error{% endif %}">
+          {{ form_errors(form.biography) }}
+          <label>MENSAJE</label>
+          <label>{{ form_widget(form.biography) }}</label>
+        </div>
+          
+        <div>
+          {{ form_label(form.isProductora) }}
+          {{ form_widget(form.isProductora) }}
+          {{ form_label(form.isDj) }}
+          {{ form_widget(form.isDj) }}
+          {{ form_label(form.isVj) }}
+          {{ form_widget(form.isVj) }}
+        </div>
+
+        <label class="button"><button>GUARDAR</button></label>
+      </div>
+        
+      <div class="col-right">
+        <label>IMAGEN DE PERFIL</label>
+        {% block avatar_edit %}
+
+        {% endblock %}
+
+        <div class="avatar">
+          <div id="cambio-img">
+            {% if user.avatar is not null %}
+              <img id="profile-avatar" width="144" height="144" src="{{ web_path(user.avatar, 'reference') | apply_filter('users_small') }}" title="{{ user }}" style="display: block" />
+            {% else %}
+              <img id="profile-avatar" width="144" height="144" title="{{ user }}" src="{{ asset('assets/img/avatar_' ~ ((user.gender is null) ? 'm' : user.gender) ~ '.jpg') }}" style="display: block" />
+            {% endif %}
+            <div class="cargando" style="display: none;">
+              <div class="progress">
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar" class="progress-bar progress-bar-success"></div>
+              </div>
+              <p class="progress-text">Cargando</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="up-avatar">
+          <span class="btn btn-success fileinput-button">
+            <span class="InputButton">Subir imagen de perfil</span>
+            <input type="file" class="custom-file-input" id="user_avatar" />
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% if user.getIsDj() %}
+    {% set songs = user.getSongs().slice(0, max_per_page) %}
+    {% if(songs | length > 0 ) %}
+    <div class="party">
+      <div class="sound">
+        <p>SOUNDCLOUDS</p>
+      </div>
+    </div>
+
+    <div class="soundcloud edit">
+      <div class="ui-widget-header droppable sound_cloud">
+        <p>Arrastrar Soundcloud principal</p>
+      </div>
+
+      <div id="container-music">
+        {% include 'SuccessUserBundle:Profile/response:songs.html.twig' with {'collection': songs}  %}
+      </div>
+
+      {% if user.getSongs().count() > max_per_page %}
+        {% include 'WebBundle:Frontend/Helper:pager.html.twig' with { 'container': 'container-music', 'link': path('web_usuarios_medias', {'page': 2, 'provider': 'songs' }) } %}
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="party">
+      <div class="sound">
+        <p>SOUNDCLOUDS <span id="msg-sound-none">( Aun no has subido ningun tema )</span></p>
+      </div>
+    </div>
+    <div class="soundcloud edit" style="display: none">
+      <div class="ui-widget-header droppable sound_cloud">
+        <p>Arrastrar Soundcloud principal</p>
+      </div>
+      <div id="container-music"></div>
+    </div>
+    {% endif %}
+  {% endif %}
+
+  {% if user.getIsVj() %}
+  {% set youtubes = user.getYoutubes().slice(0, max_per_page) %}
+  {% if(youtubes | length > 0 ) %}
+    <div class="party">
+      <div class="youtube">
+        <p>YOUTUBE</p>
+      </div>
+    </div>
+    <div class="soundcloud edit">
+      <div class="ui-widget-header droppable you_tube">
+        <p>Arrastrar Video principal</p>
+      </div>
+      <div id="container-videos">
+        {% include 'SuccessUserBundle:Profile/response:youtubes.html.twig' with {'collection': youtubes}  %}
+      </div>
+      {% if user.getYoutubes().count() > max_per_page %}
+        {% include 'WebBundle:Frontend/Helper:pager.html.twig' with { 'container': 'container-videos', 'link': path('web_usuarios_medias', {'page': 2, 'provider': 'youtubes' }) } %}
+      {% endif %}
+    </div>
+    {% else %}
+      <div class="party">
+        <div class="youtube">
+          <p>YOUTUBE <span id="msg-video-none">( Aun no has subido ningun video )</span></p>
+        </div>
+      </div>
+      <div class="soundcloud edit" style="display: none">
+        <div class="ui-widget-header droppable you_tube">
+          <p>Arrastrar Video principal</p>
+        </div>
+        <div id="container-videos"></div>
+      </div>
+    {% endif %}    
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block content_right %}
+  {% include 'SuccessUserBundle:Profile:right.html.twig' with {'user': user } %}
+{% endblock %}
+
+{% block javascripts %}
+
+{{ parent() }}
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+{% javascripts  'assets/js/jquery-fileupload/vendor/jquery.ui.widget.js'
+                'assets/js/jquery-fileupload/vendor/tmpl.js'
+                'assets/js/jquery-fileupload/vendor/load-image.all.min.js'
+                'assets/js/jquery-fileupload/vendor/canvas-to-blob.min.js'
+                'assets/js/jquery-fileupload/jquery.iframe-transport.js'
+                'assets/js/jquery-fileupload/jquery.fileupload.js'
+                'assets/js/jquery-fileupload/jquery.fileupload-process.js'
+                'assets/js/jquery-fileupload/jquery.fileupload-image.js'
+                'assets/js/jquery-fileupload/jquery.fileupload-audio.js'
+                'assets/js/jquery-fileupload/jquery.fileupload-video.js'
+                'assets/js/jquery-fileupload/jquery.fileupload-validate.js'
+                'assets/js/jquery-fileupload/jquery.fileupload-ui.js'
+                'assets/js/jquery-fileupload/jquery.iframe-transport.js'
+                filter='yui_js' output='assets/compiled/js/js_upload_html5.js' %}
+<script src="{{ asset_url }}" type="text/javascript"></script>
+{% endjavascripts %}
+<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+<!--[if (gte IE 8)&(lt IE 10)]>
+<script src="/assets/js/jquery-fileupload/cors/jquery.xdr-transport.js"></script>
+<![endif]-->
+  
+<script type="text/javascript">
+var post_page_success = function(){
+  $( ".draggable" ).draggable({ revert: "valid" });
+}
+
+$('.InputButton').on("click" , function () {
+  $(this).next().click();
+});
+
+// custom method for url validation with or without http://
+function validateUrl(id){
+    var value = $('#'+id).val();
+    if(value == ''){
+      return true;
+    }
+    if(value.substr(0,7) != 'http://'){
+      value = 'http://' + value;
+      $('#'+id).val(value)
+    }
+    if(value.substr(value.length-1, 1) != '/'){
+      value = value + '/';
+      $('#'+id).val(value)
+    }
+    return /^(http|https|ftp):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(value);
+};
+
+$("#profile-form").submit(function(){
+  if(validateUrl('fos_user_profile_form_website')){
+    return true;
+  }
+  alert('La url ingresada es incorrecta');
+  $('#fos_user_profile_form_website').focus();
+  return false;
+});
+
+
+$(function() {
+  $( ".draggable" ).draggable({ revert: "valid" });
+  $( ".sound_cloud" ).droppable({
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    drop: function( event, ui ) {
+      var id = $(ui.draggable).data('id');
+      var self = this;
+      $( self )
+        .addClass( "ui-state-highlight" )
+        .find( "p" )
+        .html( "Nuevo Soundcloud principal" );
+      
+      // Ajax
+      $.ajax({
+        type: "GET",
+        url: '{{ path('media_avatar_upload', {'providerName': 'song' }) }}?mediaId='+id,
+        dataType: "json",
+        success: function(data){
+          $( self )
+            .removeClass( "ui-state-highlight" )
+            .find( "p" )
+            .html( "Arrastrar Soundcloud principal" );
+        },
+        complete: function(data){}
+      });      
+    }
+  });
+  $( ".you_tube" ).droppable({
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    drop: function( event, ui ) {
+      var id = $(ui.draggable).data('id');
+      var self = this;
+      $( self )
+        .addClass( "ui-state-highlight" )
+        .find( "p" )
+        .html( "Nuevo Video principal" ); 
+      
+      // Ajax
+      $.ajax({
+        type: "GET",
+        url: '{{ path('media_avatar_upload', {'providerName': 'youtube' }) }}?mediaId='+id,
+        dataType: "json",
+        success: function(data){
+          $( self )
+            .removeClass( "ui-state-highlight" )
+            .find( "p" )
+            .html( "Arrastrar Video principal" );
+        },
+        complete: function(data){}
+      });
+    }
+  });
+  
+  // AVATAR
+  // Change this to the location of your server-side upload handler:
+  var url = '{{ path('media_upload', {'context': 'eventos_image', 'providerName': 'sonata.media.provider.image', 'objectClass': 'users', 'objectId': user.id }) }}';
+
+  var fileProgressWrapper;
+  var fileProgressElement;
+  var contexto;
+
+  $('#user_avatar').fileupload({
+      url: url,
+      dataType: 'json',
+      autoUpload: true,
+      acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+      maxFileSize: 5000000, // 5 MB
+      // Enable image resizing, except for Android and Opera,
+      // which actually support image resizing, but fail to
+      // send Blob objects via XHR requests:
+      disableImageResize: /Android(?!.*Chrome)|Opera/
+          .test(window.navigator.userAgent),
+      previewMaxWidth: 137,
+      previewMaxHeight: 137,
+      previewCrop: true,
+      maxNumberOfFiles: 1,
+      uploadTemplateId: null,
+      downloadTemplateId: null,
+      messages: {
+        maxNumberOfFiles: '{{ 'media.upload.maxNumberOfFiles' | trans  }}',
+        acceptFileTypes: '{{ 'media.upload.acceptFileTypes' | trans  }}',
+        maxFileSize: '{{ 'media.upload.maxFileSize' | trans  }}',
+        minFileSize: '{{ 'media.upload.minFileSize' | trans  }}'
+      }          
+  }).on('fileuploadadd', function (e, data) {
+      var input = e.currentTarget;            
+      data.context = $('#cambio-img');
+      contexto = data.context;
+
+      fileProgressWrapper = $(data.context).find('.progress').children()[0];
+      fileProgressElement = $(data.context).find('.progress-text');            
+      $(fileProgressElement).html('{{ 'upload.progress.pendiente' | trans }}');
+
+      $('#profile-avatar').hide();
+      $(data.context).find('.cargando').show();
+
+  }).on('fileuploadprocessalways', function (e, data) {
+
+      var index = data.index,
+          file = data.files[index],
+          node = $('#profile-avatar');
+      /*if (file.preview) {
+         node.find('canvas').remove();
+         node.find('img').remove();
+         node.prepend(file.preview);
+         //$($(fileProgressElement).children()[1]).text(file.name);              
+       }*/
+
+      if (file.error) {
+        $(fileProgressWrapper).parent('.progress').addClass('error');
+        $(fileProgressElement).css('width', '');
+        $(fileProgressElement).html(file.error);
+      }
+
+  }).on('fileuploadprogressall', function (e, data) {
+    var progress = parseInt(data.loaded / data.total * 100, 10);
+    $(fileProgressWrapper).css('width', progress + '%');
+    $(fileProgressElement).html('{{ 'upload.progress.subiendo' | trans }}');
+  }).on('fileuploaddone', function (e, data) {
+    $(fileProgressElement).html('{{ 'upload.progress.completo' | trans }}');
+    $('#profile-avatar').attr('src', data.result.files[0].thumbnailUrl);
+    setTimeout(function(){
+      $(contexto).find('.cargando').hide();
+      $('#profile-avatar').show();          
+    }, 500);
+  });
+});
+
+function deleteMedia(a) {
+  $(a).parent('li').fadeOut();
+  $.ajax({
+    url: $(a).data('href'),
+    type: 'get',
+    dataType: 'json',
+    success: function(data){
+      //$(a).parent('li').fadeOut();
+    },
+    complete: function(){},
+    error: function(){}
+  });
+}
+
+$(".item-remove").click(function(e) {
+  $( this ).html( '<i class="fa fa-spinner fa-spin"></i>' );
+  var self = this;
+  $.ajax({
+    url: $( self ).data('href'),
+    type: 'post',
+    dataType: 'json',
+    success: function(data){
+      $( self ).html( '<i class="fa fa-trash-o"></i>' );
+      $( self ).parents('li').fadeOut("normal", function() { $(this).remove(); });
+    },
+    complete: function(){},
+    error: function(){
+      $( self ).html( '<i class="fa fa-trash-o"></i>' );
+    }
+  });
+});
+</script>
+{% endblock %} 
