@@ -16,9 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\AopBundle\JMSAopBundle(),
-            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             
             // SonataAdminBundle + FosUserBundle
             new FOS\UserBundle\FOSUserBundle(),
@@ -40,36 +37,12 @@ class AppKernel extends Kernel
             /*****************/
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Application\Success\UsuarioBundle\UsuarioBundle(),
-            
-            // Behaviours BASICOS
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            
+           
             // Manejo de Imagenes Fisicas
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
             
             // Translator
             new Lexik\Bundle\TranslationBundle\LexikTranslationBundle(),
-            
-            // Embebed translators forms
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-            
-            // Tiny MCE
-            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
-
-            // Manejo Basico de Locales
-            new Success\LocaleBundle\LocaleBundle(),
-            
-            // Sonata Custom Admin by Success
-            new Success\AdminBundle\SuccessAdminBundle(),
-            
-            // Frontend
-            new Application\Success\FrontendBundle\FrontendBundle(),
-            
-            // Para poder utilizar enumerados
-            new Fresh\Bundle\DoctrineEnumBundle\FreshDoctrineEnumBundle(),
-
-            // Formulario de Contacto
-            new FrequenceWeb\Bundle\ContactBundle\FrequenceWebContactBundle(),
 
             // Extraer i18n de Templates
             new BCC\ExtraToolsBundle\BCCExtraToolsBundle(),
@@ -95,3 +68,4 @@ class AppKernel extends Kernel
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 }
+

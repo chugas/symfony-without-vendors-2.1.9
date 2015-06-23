@@ -3,11 +3,14 @@
 /EXAMPLES
 /app/logs
 /app/cache
+/app/var
 /web/uploads
 /app/config/parameters.yml
 /web/cgi-bin
 /web/.htaccess
-/web/bundles
+/web/phpmyadmin
+
+#/web/bundles
 #/app/config/*_dev.yml
 #/vendor
 #/app/config/bundles

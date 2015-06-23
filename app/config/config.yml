@@ -2,24 +2,25 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: bundles/success_sonata.yml }
-    - { resource: bundles/success_sonata_media.yml }
-    - { resource: bundles/success_sonata_users.yml }
-    - { resource: bundles/success_sonata_seo.yml }
-    - { resource: bundles/success_imagine.yml }
-    - { resource: bundles/success_contact.yml }
-    - { resource: bundles/success_admin.yml }
-    - { resource: bundles/stof_doctrine_extensions.yml }
-    - { resource: bundles/stfalcon_tinymce.yml }
-    - { resource: bundles/lexik_translation.yml }
-    - { resource: bundles/deploy.yml }
-#    - { resource: bundles/a2lix_translation_form.yml }
-#    - { resource: bundles/success_news.yml }
-#    - { resource: bundles/success_rss.yml }
-#    - { resource: bundles/success_weather.yml }
-#    - { resource: bundles/success_newsletter.yml }    
-    
-    
+
+    # Sonata Bundles
+    - { resource: sonata/sonata_admin.yml }
+    - { resource: sonata/sonata_block.yml }
+    - { resource: sonata/sonata_media.yml }
+    - { resource: sonata/sonata_cache.yml }
+    - { resource: sonata/sonata_seo.yml }
+    - { resource: sonata/sonata_user.yml }
+
+    # Success Bundles
+    - { resource: success/success_deploy.yml }    
+    - { resource: success/success_core.yml }
+    - { resource: success/success_invite.yml }
+    - { resource: success/success_relation.yml }
+    - { resource: success/success_avalanche.yml }
+    - { resource: success/success_forum.yml }
+    - { resource: success/success_timeline.yml }
+    - { resource: success/success_comment.yml }
+
 framework:
     esi: { enabled: true }
     translator:      { fallback: "%locale%" }
@@ -29,13 +30,19 @@ framework:
         strict_requirements: "%kernel.debug%"
     form:            true
     csrf_protection: true
-    validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'], assets_version: 1.0 } #assets_version: SomeVersionScheme
+    validation:      { enabled: true, enable_annotations: true }
+    templating:
+        engines: ['twig'] 
+        assets_version: 1.0.1
+        packages:
+            cdn1:
+                base_urls: ["http://local.justrave.com/"]
     default_locale:  "%locale%"
     trusted_proxies: ~
     fragments: { path: /_proxy }    
     session:
         save_path: %kernel.root_dir%/var/sessions
+    http_method_override: true
 
 # Twig Configuration
 twig:
@@ -47,7 +54,9 @@ twig:
 
     form:
         resources:
-            - 'SuccessAdminBundle:Form:form_admin_fields.html.twig'
+            - ::fields.html.twig
+#            - 'CoreBundle::form_fields.html.twig'
+#            - 'SuccessAdminBundle:Form:form_admin_fields.html.twig'
 #            - 'A2lixTranslationFormBundle::form.html.twig'
 #            - 'CategoryBundle:Form:fields.html.twig'
             
@@ -82,15 +91,76 @@ doctrine:
         mapping_types:
             enum: string
             
+#    orm:
+#        auto_generate_proxy_classes: "%kernel.debug%"
+#        auto_mapping: true        
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        auto_generate_proxy_classes: %kernel.debug%
+        resolve_target_entities:
+            Symfony\Component\Security\Core\User\UserInterface: Application\Success\UserBundle\Entity\User        
+        entity_managers:
+            default:
+                auto_mapping: true
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true        
+                mappings:
+                    CCDNForumForumBundle:
+                        mapping:              true
+                        type:                 yml
+                        dir:                  "Resources/config/doctrine"
+                        alias:                ~
+                        prefix:               CCDNForum\ForumBundle\Entity
+                        is_bundle:            true
+                        
+stof_doctrine_extensions:
+    default_locale: %locale%
+    orm:
+        default:
+            sluggable: true
+#            timestampable: true
+            softdeleteable: true
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    default_mailer: realtime
+    mailers:
+        queue:
+            transport:            "%mailer_transport%"
+            username:             "%mailer_user%"
+            password:             "%mailer_password%"
+            host:                 "%mailer_host%"
+            spool:
+                type:                 file
+                path:                 "%kernel.root_dir%/spool"
+            sender_address:       ~
+            antiflood:
+                threshold:            99
+                sleep:                0
+            logging:              "%kernel.debug%"
+        realtime:
+            transport:            "%mailer_transport%"
+            username:             "%mailer_user%"
+            password:             "%mailer_password%"
+            host:                 "%mailer_host%"
 
+hwi_oauth:
+    firewall_name: main
+    resource_owners:
+        facebook:
+            type:          facebook
+            client_id:     %success.oauth.facebook.clientid%
+            client_secret: %success.oauth.facebook.clientsecret%
+    # optional HTTP Client configuration
+    http_client:
+        timeout:       50
+        verify_peer:   true
+        ignore_errors: true
+        max_redirects: 10
+            
+#sonata_doctrine_orm_admin:
+#    templates:
+#        form:
+#            - MopaBootstrapBundle:Form:fields.html.twig
+#             - SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig

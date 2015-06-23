@@ -8,8 +8,8 @@ class AppCache extends HttpCache
 {
   protected function getOptions() {
     return array(
-        'debug'                 => true,
-        'default_ttl'           => 600,
+        'debug'                 => false,
+        'default_ttl'           => 0,
         'private_headers'       => array('Authorization', 'Cookie'),
         'allow_reload'          => false,
         'allow_revalidate'      => false,

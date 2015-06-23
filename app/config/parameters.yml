@@ -2,15 +2,46 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
     database_port:     ~
-    database_name:     dbname
+    database_name:     jr
     database_user:     root
     database_password: 12345
 
+#    database_name:     justrave
+#    database_user:     justbeta.justrav
+#    database_password: justbeta13245
+#    mysql -u justbeta.justrav -pjustbeta13245
+
+#    database_name:     success_justrave
+#    database_user:     success_justrave
+#    database_password: justrave2014
+
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_host:       mail.agrotemario.com
+    mailer_user:       agrotema
+    mailer_password:   k3t3bYDt79
 
     locale:            es
     locales:           [es]
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Sonata Admin Options
+    sonata_admin.title:             JustRave
+    sonata_admin.logo_title:        /assets/img/justrave.png
+
+    # Sonata Media options
+    sonata_media.cdn.host:          /uploads/media
+
+    # Sonata User Options
+    sonata_user.google_authenticator.server:  demo.sonata-project.org
+    
+    #### NO USADO ####
+    #success.oauth.amazon.clientid: 1234335151
+    #success.oauth.amazon.clientsecret: secret
+    
+    success.oauth.facebook.clientid: '1470236429855564'
+    success.oauth.facebook.clientsecret: b05e36d7e5293dffe2ff5c414538f655
+    
+    success.oauth.google.clientid: '726529516427-lcpour07c2tpc5a20o31b4u5aounoh1g.apps.googleusercontent.com'
+    success.oauth.google.clientsecret: 96_CAeei0ZCTraI_p2RD5FDI
+    
+    success.settings.path: %kernel.root_dir%/config/success/success_settings.yml

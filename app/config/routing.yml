@@ -1,47 +1,5 @@
-########################### ADMIN ###############################
-success_admin:
-    resource: "@SuccessAdminBundle/Resources/config/routing.yml"
-    prefix:   /admin
-
-admin:
-    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /admin
-
-_sonata_admin:
-    resource: .
-    type: sonata_admin
-    prefix: /admin
-
-# TRANSLATOR
-lexik_translation_edition:
-    resource: "@LexikTranslationBundle/Resources/config/routing.yml"
-    prefix:   /admin
-
-#-----------------------------------------------------------------------
-
-_imagine:
-    resource: .
-    type:     imagine
-    
-# error-prevention
-homepage:
-    pattern: /
-    defaults: { _controller: FrontendBundle:Default:index }  
-
-locale:
-    resource: "@LocaleBundle/Resources/config/routing.yml"
-    prefix:   /
-
-#################FRONTEND o GENERALES####################################################
-
-# Internal routing configuration to handle ESI
-# ****** WARNING ******
-# This route should be enabled with caution as it can open a security vulnerability
-# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
-# ****** WARNING ******
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
@@ -59,28 +17,85 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /change-password
 
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+##############LOGIN#############################################################
+#https://www.facebook.com/dialog/oauth?response_type=code&client_id=1470236429855564&redirect_uri=http%3A%2F%2Flocal.justrave.com%2Fapp_dev.php%2Flogin%2Fcheck-facebook
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /connect
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix: /login
+
+facebook_login:
+    pattern: /login/check-facebook
+
+google_login:
+    pattern: /login/check-google
     
-gallery:
+google_contacts:
+    path:     /redirect/google1/
+    defaults: { _controller: CoreBundle:OAuth:getGoogleContacts }
+
+google_contacts_call:
+    path:     /google/contacts/call
+    defaults: { _controller: CoreBundle:OAuth:call }
+################################################################################
+
+######################## BUNDLES DE TERCEROS ##################
+invite:
+    resource: "@SuccessInviteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }
+######################### WEB CORE #############################
+web:
+    resource: "@WebBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#exception:
+#    resource: "@ExceptionBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+# Foro
+CCDNForumForumBundle:
+    resource: "@CCDNForumForumBundle/Resources/config/routing.yml"
+
+################################################################################
+
+sonata_cache_cache:
+    resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
+    prefix: /
+
+sonata_media_gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
     prefix: /media/gallery
 
-media:
+sonata_media_media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
-    
-frequence_web_contact:
-    resource: '@FrequenceWebContactBundle/Resources/config/routing.xml'
-    
-exception:
-    resource: "@ExceptionBundle/Resources/config/routing.yml"
-    prefix:   /
-    
-usuario:
-    resource: "@UsuarioBundle/Resources/config/routing.yml"
-    prefix:   / 
-    
-portal:
-    resource: "@FrontendBundle/Resources/config/routing.yml"
-    prefix:   /
+
+sonata_media_pixlr:
+    resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
+    prefix: /admin/media
+
+_imagine:
+    resource: .
+    type:     imagine
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+soanata_user:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /admin

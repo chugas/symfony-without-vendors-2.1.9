@@ -7,23 +7,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/chugas/SuccessLocaleBundle"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/chugas/SuccessAdminBundle"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:chugas/SuccessTranslationBundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:chugas/SuccessToolsBundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:chugas/SuccessContactBundle.git"
         },
         {
             "type": "vcs",
@@ -31,60 +15,80 @@
         },
         {
             "type": "vcs",
-            "url": "git@github.com:chugas/SuccessTinymceBundle.git"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:chugas/SuccessImagineBundle.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:chugas/SuccessTranslationFormBundle.git"
+            "url": "git@github.com:chugas/Imagine.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:chugas/Imagine.git"
+            "url": "git@github.com:chugas/SuccessRelationBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/SuccessInviteBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/CCDNForumForumBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/CCDNComponentCrumbTrailBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:chugas/CCDNMessageMessageBundle.git"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": ">=2.2,<2.3-dev",
-        "doctrine/orm": ">=2.2.3,<2.5-dev",
-        "doctrine/doctrine-bundle": "dev-master",
-        "twig/extensions": "1.0.*@dev",        
-        "symfony/assetic-bundle": "2.3.*",
-        
-        "symfony/swiftmailer-bundle": "2.2.*",
-        "symfony/monolog-bundle": "2.2.*",
-        "sensio/distribution-bundle": "2.2.*",
-        "sensio/framework-extra-bundle": "2.2.*",
-        "sensio/generator-bundle": "2.2.*",
-        "kriswallsmith/assetic": "1.1.*@dev",
 
-        "jms/security-extra-bundle": "dev-master",
-        "jms/di-extra-bundle": "dev-master",
+        "symfony/symfony":                      "~2.3",
+        "symfony/assetic-bundle":               "~2.3",
+	"symfony/swiftmailer-bundle":           "~2.3",
+        "symfony/monolog-bundle":               "~2.3", 
+        "symfony/intl":                         "~2.3",
+ 
+        "twig/twig": "~1.12",
+        "twig/extensions": "~1.0",
 
-        "sonata-project/admin-bundle": "2.2.*",
-        "friendsofsymfony/user-bundle": "1.3.*",
-        "sonata-project/user-bundle": "2.2.*",
-        "sonata-project/doctrine-orm-admin-bundle": "2.2.*",
-        "sonata-project/media-bundle": "2.2.*",
-        "sonata-project/intl-bundle" : "2.2.*",
-        "sonata-project/seo-bundle" : "dev-master",
+        "sensio/distribution-bundle": "~2.3",
+        "sensio/framework-extra-bundle": "~2.3",
+        "sensio/generator-bundle": "~2.3",
+
+        "doctrine/doctrine-bundle":             "~1.3@dev",
+        "doctrine/orm":                         "~2.3",
         
-        "stof/doctrine-extensions-bundle": "dev-master",
-        "fresh/doctrine-enum-bundle": "dev-master",
+        "sonata-project/easy-extends-bundle": "~2.1",
+        "sonata-project/seo-bundle": "~1",
+        "sonata-project/doctrine-extensions": "~1",
+        "sonata-project/intl-bundle": "~2.1",
+        "sonata-project/admin-bundle": "~2.2",
+        "sonata-project/doctrine-orm-admin-bundle": "~2.2",
+        "sonata-project/notification-bundle": "~2.2",
+        "sonata-project/block-bundle": "~2.2",
+        "sonata-project/media-bundle": "~2.2",
+        "sonata-project/user-bundle": "~2.2",
+        "sonata-project/cache-bundle": "~2.1",
+        "sonata-project/exporter": "~1.3",      
+
+        "success/imagine-bundle": "dev-develop@dev",
+        "success/deploy-bundle" : "dev-master@dev",
+        "success/relation-bundle": "dev-master@dev",
+        "google/apiclient": "1.0.4-beta",
+        "success/invite-bundle": "dev-master",
         
-        "success/imagine-bundle": "dev-develop",
-        "success/translation-bundle": "dev-master",
-        "success/locale-bundle": "dev-master",
-        "success/admin-bundle": "dev-master",
-        "success/translation-form-bundle": "dev-master",
-        "success/tinymce-bundle": "dev-master",
-        "success/contact-bundle" : "1.0.*",
-        "success/extra-tools-bundle" : "dev-master",
-        "success/deploy-bundle" : "dev-master"
-        
+        "stof/doctrine-extensions-bundle":      "1.1.*",
+        "hwi/oauth-bundle":                     "0.3.*",
+        "stephpy/TimelineBundle": "v2.0.3",
+        "oh/google-map-form-type-bundle":       "dev-master@dev",
+        "friendsofsymfony/comment-bundle":      "2.0.*",
+
+        "codeconsortium/ccdn-component-dashboard-bundle": "2.0.2@dev",
+        "codeconsortium/ccdn-component-common-bundle": "2.0.2@dev",
+        "codeconsortium/ccdn-forum-bundle": "dev-agrotemario@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -105,5 +109,5 @@
             "dev-master": "2.1-dev"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
